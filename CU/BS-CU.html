@@ -28,7 +28,7 @@
   /* ── SHARED ── */
   .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
   .section-label-line { width: 28px; height: 2px; background: var(--orange); flex-shrink: 0; }
-  .section-label-text { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: var(--orange); text-transform: uppercase; }
+  .section-label-text { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.16em; color: var(--orange); text-transform: uppercase; }
 
   .inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
 
@@ -115,7 +115,7 @@
   .pillar-card:hover::after { transform: scaleX(1); }
   .pillar-card-num { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: var(--orange); letter-spacing: 0.08em; margin-bottom: 7px; }
   .pillar-card-icon { font-size: 20px; margin-bottom: 8px; display: block; }
-  .pillar-card-title { font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 700; color: var(--navy); margin-bottom: 7px; line-height: 1.3; }
+  .pillar-card-title { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 7px; line-height: 1.3; }
   .pillar-card-body { font-family: 'Lato', sans-serif; font-size: 13px; line-height: 1.5; color: var(--muted); font-weight: 400; }
   .pillar-card-platforms { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; }
   .platform-tag { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; padding: 3px 7px; background: rgba(232,98,26,0.08); color: var(--orange-dim); text-transform: uppercase; }
@@ -149,7 +149,7 @@
   .pillar-section.beige .feat:hover { background: #EDE8E2; }
 
   .feat-icon { font-size: 22px; margin-bottom: 10px; display: block; }
-  .feat-title { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
+  .feat-title { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
   .feat-body { font-family: 'Lato', sans-serif; font-size: 13.5px; line-height: 1.52; color: var(--muted); font-weight: 400; }
 
   /* stat strip */
@@ -445,13 +445,120 @@
       </div>
     </div>
 
-    <!-- Giving Society -->
-    <div class="section-label" style="margin-bottom:16px;"><div class="section-label-line"></div><span class="section-label-text">CU Giving Society</span></div>
-    <div class="feature-grid cols-4" style="margin-bottom:28px;">
-      <div class="feat"><div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--orange);letter-spacing:0.08em;margin-bottom:6px;">TIER 1</div><div class="feat-title">CU Circle</div><div class="feat-body">Annual gifts — the foundation of a giving culture, converting supporters into long-term partners.</div></div>
-      <div class="feat"><div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--orange);letter-spacing:0.08em;margin-bottom:6px;">TIER 2</div><div class="feat-title">Founders Society</div><div class="feat-body">Major gifts — institutional recognition, advisory access, named acknowledgment across CU platforms.</div></div>
-      <div class="feat"><div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--orange);letter-spacing:0.08em;margin-bottom:6px;">TIER 3</div><div class="feat-title">Pioneers Council</div><div class="feat-body">Transformative gifts — shaping faculties, programs, and CU's long-term institutional direction.</div></div>
-      <div class="feat"><div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--orange);letter-spacing:0.08em;margin-bottom:6px;">TIER 4</div><div class="feat-title">Legacy Guild</div><div class="feat-body">Planned bequests — the highest form of commitment, ensuring CU benefits for generations.</div></div>
+    <!-- Investment Vehicles -->
+    <div class="section-label" style="margin-bottom:16px;"><div class="section-label-line"></div><span class="section-label-text">Alumni Investment Vehicles</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);overflow:hidden;margin-bottom:28px;">
+
+      <!-- Vehicle 01 -->
+      <div style="background:#fff;padding:28px 28px 24px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <div style="font-family:'Montserrat',sans-serif;font-size:36px;font-weight:800;color:rgba(12,35,64,0.08);line-height:1;">01</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span style="border:1px solid #ccc;border-radius:20px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;color:var(--navy);">PHILANTHROPIC</span>
+            <span style="border:1px solid #C8972A;border-radius:20px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;color:var(--gold);">NON-DILUTIVE GRANTS</span>
+          </div>
+        </div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:12px;">CU Innovation Fund</div>
+        <div style="border-left:3px solid var(--gold);padding:10px 14px;background:rgba(200,151,42,0.07);margin-bottom:16px;">
+          <div style="font-family:'Lato',sans-serif;font-size:13.5px;font-style:italic;color:var(--gold);font-weight:700;">For those who remember what it felt like to need a first chance.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
+          <div style="background:#f5f0eb;padding:12px;border-radius:2px;">
+            <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:var(--muted);letter-spacing:0.1em;margin-bottom:4px;">👤 INVESTOR</div>
+            <div style="font-family:'Lato',sans-serif;font-size:12.5px;color:var(--navy);">Professionals and business owners who want to support without active deal management</div>
+          </div>
+          <div style="background:rgba(200,151,42,0.07);padding:12px;border-radius:2px;">
+            <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.1em;margin-bottom:4px;">☆ BENEFICIARY</div>
+            <div style="font-family:'Lato',sans-serif;font-size:12.5px;color:var(--navy);">Student entrepreneurs and first-time founders at CU</div>
+          </div>
+        </div>
+        <div style="font-family:'Lato',sans-serif;font-size:13px;color:#4A4A6A;line-height:1.6;">Non-dilutive grants deployed quarterly to the most promising student ventures. No equity. Transparent deployment. Annual Demo Day invitations for contributors.</div>
+      </div>
+
+      <!-- Vehicle 02 — dark bg -->
+      <div style="background:var(--navy);padding:28px 28px 24px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <div style="font-family:'Montserrat',sans-serif;font-size:36px;font-weight:800;color:rgba(255,255,255,0.08);line-height:1;">02</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span style="border:1px solid rgba(255,255,255,0.25);border-radius:20px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;color:rgba(255,255,255,0.7);">EQUITY</span>
+            <span style="border:1px solid var(--gold);border-radius:20px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;color:var(--gold);">DIRECT INVESTMENT</span>
+          </div>
+        </div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:12px;">CU Alumni Angels</div>
+        <div style="border-left:3px solid var(--gold);padding:10px 14px;background:rgba(255,255,255,0.05);margin-bottom:16px;">
+          <div style="font-family:'Lato',sans-serif;font-size:13.5px;font-style:italic;color:var(--gold);font-weight:700;">For the investor who knows that the best edge is a shared origin.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
+          <div style="background:rgba(255,255,255,0.06);padding:12px;border-radius:2px;">
+            <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:rgba(255,255,255,0.45);letter-spacing:0.1em;margin-bottom:4px;">👤 INVESTOR</div>
+            <div style="font-family:'Lato',sans-serif;font-size:12.5px;color:rgba(255,255,255,0.8);">Active investors who read deals, back founders, and understand equity</div>
+          </div>
+          <div style="background:rgba(200,151,42,0.10);padding:12px;border-radius:2px;">
+            <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.1em;margin-bottom:4px;">☆ BENEFICIARY</div>
+            <div style="font-family:'Lato',sans-serif;font-size:12.5px;color:rgba(255,255,255,0.8);">CU-affiliated founders at the earliest and most critical stage</div>
+          </div>
+        </div>
+        <div style="font-family:'Lato',sans-serif;font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;">Pre-screened CU student and alumni startups only. Quarterly pitch events — Cairo with virtual simulcast. SPV co-investment structure available.</div>
+      </div>
+
+      <!-- Vehicle 03 — warm yellow bg -->
+      <div style="background:#FDF8EC;padding:28px 28px 24px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <div style="font-family:'Montserrat',sans-serif;font-size:36px;font-weight:800;color:rgba(12,35,64,0.08);line-height:1;">03</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span style="border:1px solid #ccc;border-radius:20px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;color:var(--navy);">FUND RETURNS</span>
+            <span style="border:1px solid #ccc;border-radius:20px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;color:var(--navy);">LP STRUCTURE</span>
+            <span style="background:var(--gold);border-radius:20px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;color:#fff;">FLAGSHIP</span>
+          </div>
+        </div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:12px;">CU Alumni Venture Fund</div>
+        <div style="border-left:3px solid var(--gold);padding:10px 14px;background:rgba(200,151,42,0.08);margin-bottom:16px;">
+          <div style="font-family:'Lato',sans-serif;font-size:13.5px;font-style:italic;color:var(--gold);font-weight:700;">For those who want to be on the right side of Egypt's next chapter.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
+          <div style="background:rgba(12,35,64,0.05);padding:12px;border-radius:2px;">
+            <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:var(--muted);letter-spacing:0.1em;margin-bottom:4px;">👤 INVESTOR</div>
+            <div style="font-family:'Lato',sans-serif;font-size:12.5px;color:var(--navy);">Senior executives, family offices, and high-net-worth individuals</div>
+          </div>
+          <div style="background:rgba(200,151,42,0.08);padding:12px;border-radius:2px;">
+            <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.1em;margin-bottom:4px;">☆ BENEFICIARY</div>
+            <div style="font-family:'Lato',sans-serif;font-size:12.5px;color:var(--navy);">CU startups at seed and early growth — MedTech, AgriTech, FinTech, EdTech</div>
+          </div>
+        </div>
+        <div style="font-family:'Lato',sans-serif;font-size:13px;color:#4A4A6A;line-height:1.6;">A Limited Partnership — the first alumni-backed institutional fund of its kind in Egypt. Professionally managed. Investment Committee of senior alumni professionals. Annual LP meeting with full portfolio reporting.</div>
+      </div>
+
+      <!-- Vehicle 04 — dark bg -->
+      <div style="background:#1A2C42;padding:28px 28px 24px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <div style="font-family:'Montserrat',sans-serif;font-size:36px;font-weight:800;color:rgba(255,255,255,0.08);line-height:1;">04</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span style="border:1px solid rgba(255,255,255,0.25);border-radius:20px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;color:rgba(255,255,255,0.7);">PHILANTHROPIC</span>
+            <span style="border:1px solid rgba(255,255,255,0.25);border-radius:20px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;color:rgba(255,255,255,0.7);">PERMANENT LEGACY</span>
+          </div>
+        </div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:12px;">Endowed Chairs &amp; Named Programs</div>
+        <div style="border-left:3px solid var(--gold);padding:10px 14px;background:rgba(255,255,255,0.05);margin-bottom:16px;">
+          <div style="font-family:'Lato',sans-serif;font-size:13.5px;font-style:italic;color:var(--gold);font-weight:700;">For those who want to be remembered for what they built, not what they earned.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
+          <div style="background:rgba(255,255,255,0.06);padding:12px;border-radius:2px;">
+            <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:rgba(255,255,255,0.45);letter-spacing:0.1em;margin-bottom:4px;">👤 INVESTOR</div>
+            <div style="font-family:'Lato',sans-serif;font-size:12.5px;color:rgba(255,255,255,0.8);">The alumnus who thinks in decades — asking what they will leave behind</div>
+          </div>
+          <div style="background:rgba(200,151,42,0.10);padding:12px;border-radius:2px;">
+            <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.1em;margin-bottom:4px;">☆ BENEFICIARY</div>
+            <div style="font-family:'Lato',sans-serif;font-size:12.5px;color:rgba(255,255,255,0.8);">Students and faculty whose work will carry your legacy forward</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.1);overflow:hidden;">
+          <div style="padding:10px 14px;background:rgba(255,255,255,0.04);"><div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:#fff;margin-bottom:3px;">Named Scholarship</div><div style="font-family:'Lato',sans-serif;font-size:12px;color:rgba(255,255,255,0.55);">One student fully funded, your name attached every year</div></div>
+          <div style="padding:10px 14px;background:rgba(255,255,255,0.04);"><div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:#fff;margin-bottom:3px;">Named Fellowship</div><div style="font-family:'Lato',sans-serif;font-size:12px;color:rgba(255,255,255,0.55);">Masters or PhD candidate supported through full program</div></div>
+          <div style="padding:10px 14px;background:rgba(255,255,255,0.04);"><div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:#fff;margin-bottom:3px;">Named Research Grant</div><div style="font-family:'Lato',sans-serif;font-size:12px;color:rgba(255,255,255,0.55);">A specific research project in a field you believe in</div></div>
+          <div style="padding:10px 14px;background:rgba(255,255,255,0.04);"><div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:#fff;margin-bottom:3px;">Endowed Faculty Chair</div><div style="font-family:'Lato',sans-serif;font-size:12px;color:rgba(255,255,255,0.55);">A professorship funded in perpetuity — the highest honour CU can bestow</div></div>
+        </div>
+      </div>
+
     </div>
 
     <div class="resp-table">
@@ -536,25 +643,38 @@
       </div>
       <!-- Platform map -->
       <div>
-        <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-bottom:12px;">Platform Architecture</div>
-        <div style="display:flex;flex-direction:column;gap:1px;border:1px solid var(--border);overflow:hidden;">
-          <div style="display:grid;grid-template-columns:1fr auto;gap:0;background:var(--border);">
-            <div style="padding:12px 16px;background:var(--white);border-right:1px solid var(--border);"><div style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:2px;">CU Career Portal</div><div style="font-family:'Lato',sans-serif;font-size:11.5px;color:var(--muted);">Built on Wuzzuf &amp; Forasna</div></div>
-            <div style="padding:12px 16px;background:var(--white);min-width:130px;"><div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:var(--orange);letter-spacing:0.06em;margin-bottom:3px;">INTEGRATES WITH</div><div style="font-family:'Lato',sans-serif;font-size:11px;color:var(--muted);">SIS · UCCD</div></div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr auto;gap:0;background:var(--border);">
-            <div style="padding:12px 16px;background:var(--white);border-right:1px solid var(--border);"><div style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:2px;">CU Engagement Platform</div><div style="font-family:'Lato',sans-serif;font-size:11.5px;color:var(--muted);">Built on BrainsMingle</div></div>
-            <div style="padding:12px 16px;background:var(--white);min-width:130px;"><div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:var(--orange);letter-spacing:0.06em;margin-bottom:3px;">INTEGRATES WITH</div><div style="font-family:'Lato',sans-serif;font-size:11px;color:var(--muted);">SIS · FEPS Incubator · Faculty of CS</div></div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr auto;gap:0;background:var(--border);">
-            <div style="padding:12px 16px;background:var(--white);border-right:1px solid var(--border);"><div style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:2px;">CU Alumni Portal</div><div style="font-family:'Lato',sans-serif;font-size:11.5px;color:var(--muted);">Built standalone by CU</div></div>
-            <div style="padding:12px 16px;background:var(--white);min-width:130px;"><div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:var(--orange);letter-spacing:0.06em;margin-bottom:3px;">INTEGRATES WITH</div><div style="font-family:'Lato',sans-serif;font-size:11px;color:var(--muted);">Wuzzuf · Forasna · BrainsMingle · SIS</div></div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr auto;gap:0;background:var(--border);">
-            <div style="padding:12px 16px;background:var(--white);border-right:1px solid var(--border);"><div style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:2px;">CU Entrepreneurship &amp; Innovation Marketplace</div><div style="font-family:'Lato',sans-serif;font-size:11.5px;color:var(--muted);">Built jointly by BasharSoft &amp; CU</div></div>
-            <div style="padding:12px 16px;background:var(--white);min-width:130px;"><div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;color:var(--orange);letter-spacing:0.06em;margin-bottom:3px;">INTEGRATES WITH</div><div style="font-family:'Lato',sans-serif;font-size:11px;color:var(--muted);">Faculty of CS · DRTPC · FEPS · CU CO · Alumni Portal · iCareer</div></div>
-          </div>
-        </div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;margin-bottom:14px;">Platform Architecture</div>
+        <table style="width:100%;border-collapse:collapse;border:1px solid var(--border);font-family:'Lato',sans-serif;">
+          <thead>
+            <tr>
+              <th style="background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:10px 16px;text-align:left;width:35%;">Platform</th>
+              <th style="background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:10px 16px;text-align:left;width:20%;">Build</th>
+              <th style="background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:10px 16px;text-align:left;">Integrates With</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:12px 16px;background:#fff;"><div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;">CU Career Portal</div></td>
+              <td style="padding:12px 16px;background:#fff;border-left:1px solid var(--border);"><div style="font-size:13px;color:var(--muted);">Wuzzuf &amp; Forasna</div></td>
+              <td style="padding:12px 16px;background:#fff;border-left:1px solid var(--border);"><div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">SIS</span><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">UCCD</span></div></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:12px 16px;background:#f9f6f3;"><div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;">CU Engagement Platform</div></td>
+              <td style="padding:12px 16px;background:#f9f6f3;border-left:1px solid var(--border);"><div style="font-size:13px;color:var(--muted);">BrainsMingle</div></td>
+              <td style="padding:12px 16px;background:#f9f6f3;border-left:1px solid var(--border);"><div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">SIS</span><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">FEPS Incubator</span><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">Faculty of CS</span></div></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:12px 16px;background:#fff;"><div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;">CU Alumni Portal</div></td>
+              <td style="padding:12px 16px;background:#fff;border-left:1px solid var(--border);"><div style="font-size:13px;color:var(--muted);">Standalone by CU</div></td>
+              <td style="padding:12px 16px;background:#fff;border-left:1px solid var(--border);"><div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">Wuzzuf</span><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">Forasna</span><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">BrainsMingle</span><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">SIS</span></div></td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px;background:#f9f6f3;"><div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;">CU Entrepreneurship &amp; Innovation Marketplace</div></td>
+              <td style="padding:12px 16px;background:#f9f6f3;border-left:1px solid var(--border);"><div style="font-size:13px;color:var(--muted);">Jointly Built</div></td>
+              <td style="padding:12px 16px;background:#f9f6f3;border-left:1px solid var(--border);"><div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">Faculty of CS</span><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">DRTPC</span><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">FEPS</span><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">CU CO</span><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">Alumni Portal</span><span style="background:rgba(232,98,26,0.09);color:#C04E0D;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 8px;">iCareer</span></div></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
