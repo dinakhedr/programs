@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BasharSoft × Cairo University — Strategic Partnership</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lato:wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange:      #E8621A;
+    --orange-dim:  #C04E0D;
+    --orange-pale: #FEF0E7;
+    --navy:        #0C2340;
+    --blue:        #1B4F9B;
+    --gold:        #C8972A;
+    --white:       #FFFFFF;
+    --beige:       #F4EFE9;
+    --text:        #1A1A2E;
+    --muted:       #5A6070;
+    --border:      rgba(12,35,64,0.09);
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lato', sans-serif; font-weight: 400; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+  /* ── SHARED ── */
+  .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .section-label-line { width: 28px; height: 2px; background: var(--orange); flex-shrink: 0; }
+  .section-label-text { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: var(--orange); text-transform: uppercase; }
+
+  .inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+
+  /* ── HERO ── */
+  .hero { min-height: 100vh; background: var(--navy); position: relative; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(ellipse 80% 60% at 72% 50%, rgba(27,79,155,0.38) 0%, transparent 68%), radial-gradient(ellipse 40% 40% at 8% 80%, rgba(232,98,26,0.20) 0%, transparent 60%); z-index: 0; }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px); background-size: 56px 56px; z-index: 0; }
+  .hero-circle { position: absolute; right: -90px; top: 50%; transform: translateY(-50%); width: 520px; height: 520px; border-radius: 50%; border: 1px solid rgba(232,98,26,0.13); z-index: 0; }
+  .hero-circle::before { content: ''; position: absolute; inset: 52px; border-radius: 50%; border: 1px solid rgba(232,98,26,0.07); }
+
+  .hero-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 60px 48px; width: 100%; }
+
+  .hero-lockup { display: flex; align-items: baseline; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s ease 0.1s forwards; }
+  .hero-org { font-family: 'Montserrat', sans-serif; font-size: clamp(46px, 6.5vw, 84px); font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; }
+  .hero-org.basharsoft { color: #fff; }
+  .hero-org.cu { color: var(--orange); }
+  .hero-times { font-family: 'Montserrat', sans-serif; font-size: clamp(34px, 5vw, 62px); font-weight: 300; color: rgba(255,255,255,0.20); }
+
+  .hero-divider { width: 100%; height: 1px; background: linear-gradient(90deg, var(--orange), rgba(255,255,255,0.04) 55%, transparent); margin-bottom: 18px; opacity: 0; animation: fadeUp 0.7s ease 0.2s forwards; }
+
+  .hero-subtitle { font-family: 'Lato', sans-serif; font-size: clamp(14px, 1.8vw, 17px); font-weight: 400; font-style: italic; color: rgba(255,255,255,0.42); margin-bottom: 36px; max-width: 520px; line-height: 1.5; opacity: 0; animation: fadeUp 0.7s ease 0.3s forwards; }
+
+  .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.05); max-width: 640px; opacity: 0; animation: fadeUp 0.7s ease 0.42s forwards; }
+  .hero-stat { padding: 18px 18px; background: rgba(255,255,255,0.02); transition: background 0.2s; }
+  .hero-stat:hover { background: rgba(255,255,255,0.04); }
+  .hero-stat-num { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 800; color: var(--orange); line-height: 1; margin-bottom: 3px; }
+  .hero-stat-label { font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.07em; color: rgba(255,255,255,0.32); text-transform: uppercase; }
+
+  .hero-pillars { display: flex; gap: 7px; margin-top: 28px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s ease 0.56s forwards; }
+  .pillar-chip { display: flex; align-items: center; gap: 7px; padding: 6px 13px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); transition: border-color 0.2s, background 0.2s; cursor: default; }
+  .pillar-chip:hover { border-color: var(--orange); background: rgba(232,98,26,0.07); }
+  .pillar-chip-num { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: var(--orange); }
+  .pillar-chip-label { font-family: 'Lato', sans-serif; font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.42); }
+
+  .hero-scroll { position: absolute; bottom: 24px; left: 48px; display: flex; align-items: center; gap: 10px; opacity: 0; animation: fadeIn 1s ease 1.1s forwards; z-index: 1; }
+  .hero-scroll-line { width: 26px; height: 1px; background: rgba(255,255,255,0.16); }
+  .hero-scroll-text { font-family: 'Lato', sans-serif; font-size: 10px; letter-spacing: 0.13em; color: rgba(255,255,255,0.20); text-transform: uppercase; }
+
+  /* ── INTRODUCTION — white ── */
+  .intro { background: var(--white); padding: 60px 0 52px; }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+
+  .intro-headline { font-family: 'Montserrat', sans-serif; font-size: clamp(26px, 3.2vw, 40px); font-weight: 800; line-height: 1.1; color: var(--navy); margin-bottom: 18px; letter-spacing: -0.02em; }
+  .intro-headline em { font-style: italic; color: var(--orange); font-weight: 400; }
+
+  .intro-body { font-family: 'Lato', sans-serif; font-size: 14.5px; line-height: 1.72; color: #4A4A6A; font-weight: 400; margin-bottom: 14px; }
+  .intro-body strong { color: var(--navy); font-weight: 700; }
+
+  .gap-box { margin-top: 22px; padding: 18px 22px; border-left: 3px solid var(--orange); background: var(--orange-pale); }
+  .gap-box-label { font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.16em; color: var(--orange-dim); text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+  .gap-box-text { font-family: 'Lato', sans-serif; font-size: 13.5px; line-height: 1.6; color: var(--navy); font-weight: 400; }
+
+  .platforms-label { font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.16em; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+  .platform-card { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); transition: padding-left 0.2s; }
+  .platform-card:first-of-type { padding-top: 0; }
+  .platform-card:last-of-type { border-bottom: none; }
+  .platform-card:hover { padding-left: 6px; }
+  .platform-icon { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+  .platform-icon.orange { background: rgba(232,98,26,0.09); }
+  .platform-icon.blue { background: rgba(27,79,155,0.07); }
+  .platform-name { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+  .platform-desc { font-family: 'Lato', sans-serif; font-size: 12.5px; line-height: 1.45; color: var(--muted); font-weight: 400; }
+
+  .partnership-nature { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); overflow: hidden; }
+  .pn-cell { padding: 20px 22px; background: var(--white); transition: background 0.2s; }
+  .pn-cell:hover { background: #F7F4F0; }
+  .pn-icon { font-size: 20px; margin-bottom: 8px; display: block; }
+  .pn-title { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+  .pn-body { font-family: 'Lato', sans-serif; font-size: 12.5px; line-height: 1.55; color: var(--muted); font-weight: 400; }
+  .pn-body strong { color: var(--navy); font-weight: 700; }
+
+  /* ── OVERVIEW — beige ── */
+  .overview { background: var(--beige); padding: 56px 0 52px; }
+  .overview-top { display: grid; grid-template-columns: 1fr 1.7fr; gap: 48px; align-items: start; margin-bottom: 36px; }
+  .overview-headline { font-family: 'Montserrat', sans-serif; font-size: clamp(24px, 2.8vw, 36px); font-weight: 800; line-height: 1.1; color: var(--navy); letter-spacing: -0.02em; }
+  .overview-headline em { font-style: italic; font-weight: 400; color: var(--orange); }
+  .overview-desc { font-family: 'Lato', sans-serif; font-size: 14.5px; line-height: 1.72; color: #4A4A6A; font-weight: 400; }
+  .overview-desc strong { color: var(--navy); font-weight: 700; }
+
+  .pillars-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: rgba(12,35,64,0.08); border: 1px solid rgba(12,35,64,0.08); overflow: hidden; }
+  .pillar-card { background: var(--white); padding: 20px 18px; transition: background 0.2s; cursor: default; position: relative; }
+  .pillar-card:hover { background: #FDFAF7; }
+  .pillar-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+  .pillar-card:hover::after { transform: scaleX(1); }
+  .pillar-card-num { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: var(--orange); letter-spacing: 0.08em; margin-bottom: 7px; }
+  .pillar-card-icon { font-size: 20px; margin-bottom: 8px; display: block; }
+  .pillar-card-title { font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 700; color: var(--navy); margin-bottom: 7px; line-height: 1.3; }
+  .pillar-card-body { font-family: 'Lato', sans-serif; font-size: 12px; line-height: 1.5; color: var(--muted); font-weight: 400; }
+  .pillar-card-platforms { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .platform-tag { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.05em; padding: 3px 7px; background: rgba(232,98,26,0.08); color: var(--orange-dim); text-transform: uppercase; }
+
+  /* ── PILLAR SECTIONS ── */
+  .pillar-section { padding: 56px 0 52px; }
+  .pillar-section.white { background: var(--white); }
+  .pillar-section.beige { background: var(--beige); }
+
+  .pillar-header { display: flex; align-items: center; gap: 20px; margin-bottom: 32px; }
+  .pillar-num-badge { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--white); background: var(--orange); padding: 5px 12px; letter-spacing: 0.10em; flex-shrink: 0; }
+  .pillar-title { font-family: 'Montserrat', sans-serif; font-size: clamp(20px, 2.4vw, 30px); font-weight: 800; color: var(--navy); letter-spacing: -0.01em; line-height: 1.1; }
+  .pillar-subtitle { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 400; font-style: italic; color: var(--muted); margin-top: 2px; }
+
+  .pillar-context { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 36px; align-items: start; }
+  .context-text { font-family: 'Lato', sans-serif; font-size: 14px; line-height: 1.72; color: #4A4A6A; font-weight: 400; }
+  .context-text p { margin-bottom: 12px; }
+  .context-text p:last-child { margin-bottom: 0; }
+  .context-text strong { color: var(--navy); font-weight: 700; }
+
+  /* feature grid */
+  .feature-grid { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); overflow: hidden; }
+  .feature-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .feature-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .feature-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .feat { padding: 20px 20px; transition: background 0.2s; cursor: default; position: relative; }
+  .pillar-section.white .feat { background: var(--white); }
+  .pillar-section.white .feat:hover { background: #F7F4F0; }
+  .pillar-section.beige .feat { background: var(--beige); }
+  .pillar-section.beige .feat:hover { background: #EDE8E2; }
+
+  .feat-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+  .feat-title { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
+  .feat-body { font-family: 'Lato', sans-serif; font-size: 12.5px; line-height: 1.52; color: var(--muted); font-weight: 400; }
+
+  /* stat strip */
+  .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--navy); border: 1px solid var(--navy); overflow: hidden; margin-bottom: 28px; }
+  .strip-stat { padding: 18px 20px; background: var(--navy); }
+  .strip-stat-num { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; color: var(--orange); line-height: 1; margin-bottom: 3px; }
+  .strip-stat-label { font-family: 'Lato', sans-serif; font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; }
+
+  /* responsibilities table */
+  .resp-table { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); overflow: hidden; margin-top: 32px; }
+  .resp-header { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: var(--white); padding: 12px 20px; letter-spacing: 0.06em; }
+  .resp-header.cu { background: var(--orange); }
+  .resp-header.bs { background: var(--blue); }
+  .resp-row-cu, .resp-row-bs { padding: 14px 20px; font-family: 'Lato', sans-serif; font-size: 13px; line-height: 1.5; font-weight: 400; }
+  .resp-row-cu { background: var(--white); color: var(--text); border-bottom: 1px solid var(--border); }
+  .resp-row-bs { background: var(--white); color: var(--text); border-bottom: 1px solid var(--border); }
+  .pillar-section.beige .resp-row-cu,
+  .pillar-section.beige .resp-row-bs { background: var(--beige); }
+  .resp-label { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+  .resp-label.blue { color: var(--blue); }
+
+  /* mentoring formats */
+  .format-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); overflow: hidden; }
+  .format-card { padding: 20px; }
+  .pillar-section.white .format-card { background: var(--white); }
+  .pillar-section.beige .format-card { background: var(--beige); }
+  .format-badge { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; padding: 3px 9px; margin-bottom: 10px; text-transform: uppercase; }
+  .format-badge.flash { background: rgba(232,98,26,0.12); color: var(--orange-dim); }
+  .format-badge.semester { background: rgba(27,79,155,0.10); color: var(--blue); }
+  .format-badge.deep { background: rgba(12,35,64,0.08); color: var(--navy); }
+  .format-title { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .format-dur { font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 700; color: var(--orange); margin-bottom: 6px; }
+  .format-desc { font-family: 'Lato', sans-serif; font-size: 12.5px; line-height: 1.5; color: var(--muted); font-weight: 400; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .inner { padding: 0 24px; }
+    .intro-grid, .pillar-context { grid-template-columns: 1fr; gap: 28px; }
+    .overview-top { grid-template-columns: 1fr; gap: 16px; }
+    .pillars-grid, .feature-grid.cols-3, .feature-grid.cols-4 { grid-template-columns: repeat(2,1fr); }
+    .partnership-nature, .resp-table { grid-template-columns: 1fr; }
+    .stat-strip { grid-template-columns: repeat(2,1fr); }
+    .hero-stats { grid-template-columns: repeat(2,1fr); max-width: 360px; }
+    .format-cards { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .pillars-grid, .feature-grid.cols-2 { grid-template-columns: 1fr; }
+    .hero-inner { padding: 52px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ════════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-inner">
+    <div class="hero-lockup">
+      <span class="hero-org basharsoft">BasharSoft</span>
+      <span class="hero-times">×</span>
+      <span class="hero-org cu">Cairo University</span>
+    </div>
+    <div class="hero-divider"></div>
+    <p class="hero-subtitle">A five-pillar institutional partnership to transform how Egypt's largest university connects its people to their futures.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">250K</div><div class="hero-stat-label">Active Students</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">1.5M</div><div class="hero-stat-label">Graduates</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">26</div><div class="hero-stat-label">Faculties</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">117</div><div class="hero-stat-label">Years of Legacy</div></div>
+    </div>
+    <div class="hero-pillars">
+      <div class="pillar-chip"><span class="pillar-chip-num">01</span><span class="pillar-chip-label">Career Gateway</span></div>
+      <div class="pillar-chip"><span class="pillar-chip-num">02</span><span class="pillar-chip-label">Community Infrastructure</span></div>
+      <div class="pillar-chip"><span class="pillar-chip-num">03</span><span class="pillar-chip-label">Alumni Program</span></div>
+      <div class="pillar-chip"><span class="pillar-chip-num">04</span><span class="pillar-chip-label">Entrepreneurship</span></div>
+      <div class="pillar-chip"><span class="pillar-chip-num">05</span><span class="pillar-chip-label">Platform Integration</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="hero-scroll-line"></div><span class="hero-scroll-text">Scroll to explore</span></div>
+</section>
+
+<!-- ══ INTRODUCTION — white ════════════════════════════════════════════════ -->
+<section class="intro">
+  <div class="inner">
+    <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">Introduction</span></div>
+    <div class="intro-grid">
+      <div>
+        <h2 class="intro-headline">The scale is there.<br><em>The infrastructure isn't.</em></h2>
+        <p class="intro-body">Cairo University is Egypt's largest and most prestigious institution — <strong>117 years</strong> of producing the leaders, founders, scientists, and professionals who shaped modern Egypt and the wider Arab world.</p>
+        <p class="intro-body">Yet the infrastructure connecting CU to the labor market, its alumni, and Egypt's innovation ecosystem remains largely undeveloped. Students graduate without career support. Alumni disconnect within months. Graduation projects with commercial potential are assessed, filed, and forgotten.</p>
+        <div class="gap-box">
+          <div class="gap-box-label">The Gap</div>
+          <div class="gap-box-text">The gap between CU's human capital and its institutional infrastructure is one of the most consequential — and most addressable — challenges in Egyptian higher education today.</div>
+        </div>
+      </div>
+      <div>
+        <div class="platforms-label">BasharSoft's Ecosystem</div>
+        <div class="platform-card">
+          <div class="platform-icon orange">🎯</div>
+          <div><div class="platform-name">Wuzzuf & Forasna</div><div class="platform-desc">Egypt's leading recruitment platforms — 7M users, 100K companies</div></div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-icon blue">🏫</div>
+          <div><div class="platform-name">iCareer</div><div class="platform-desc">A decade of employability programs across universities, ministries, and NGOs</div></div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-icon orange">🤝</div>
+          <div><div class="platform-name">BrainsMingle</div><div class="platform-desc">White-label platform for mentoring, community, and engagement at scale</div></div>
+        </div>
+        <div class="partnership-nature">
+          <div class="pn-cell"><span class="pn-icon">🏛️</span><div class="pn-title">Not a vendor relationship</div><div class="pn-body">A <strong>strategic institutional partnership</strong> — both bring what the other cannot build alone.</div></div>
+          <div class="pn-cell"><span class="pn-icon">🔗</span><div class="pn-title">Built for mutual outcome</div><div class="pn-body">CU brings mandate and credibility. BasharSoft brings <strong>platforms, market position, and ecosystem.</strong></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OVERVIEW — beige ═════════════════════════════════════════════════════ -->
+<section class="overview">
+  <div class="inner">
+    <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">The Partnership</span></div>
+    <div class="overview-top">
+      <h2 class="overview-headline">Five pillars.<br><em>One transformation.</em></h2>
+      <p class="overview-desc">This is not a program — it is a structural transformation. <strong>Five integrated pillars</strong> deploy BasharSoft's platforms, programs, and ecosystem relationships directly in service of CU's most critical institutional priorities — turning Egypt's largest university into its most connected one.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card"><div class="pillar-card-num">PILLAR 01</div><span class="pillar-card-icon">💼</span><div class="pillar-card-title">Career & Employment Gateway</div><div class="pillar-card-body">A dedicated CU career portal connecting 250K students and 1.5M graduates to Egypt's largest employer network.</div><div class="pillar-card-platforms"><span class="platform-tag">Wuzzuf</span><span class="platform-tag">Forasna</span><span class="platform-tag">iCareer</span></div></div>
+      <div class="pillar-card"><div class="pillar-card-num">PILLAR 02</div><span class="pillar-card-icon">🏛️</span><div class="pillar-card-title">Community & Engagement Infrastructure</div><div class="pillar-card-body">White-label platform replacing fragmented WhatsApp groups with structured mentoring, advising, and community.</div><div class="pillar-card-platforms"><span class="platform-tag">BrainsMingle</span></div></div>
+      <div class="pillar-card"><div class="pillar-card-num">PILLAR 03</div><span class="pillar-card-icon">🎓</span><div class="pillar-card-title">Alumni Program</div><div class="pillar-card-body">Transforming 1.5M graduates from dormant database into CU's most powerful asset — benefits, investment vehicles, global chapters.</div><div class="pillar-card-platforms"><span class="platform-tag">Wuzzuf</span><span class="platform-tag">BrainsMingle</span><span class="platform-tag">iCareer</span></div></div>
+      <div class="pillar-card"><div class="pillar-card-num">PILLAR 04</div><span class="pillar-card-icon">🚀</span><div class="pillar-card-title">Entrepreneurship & Ecosystem</div><div class="pillar-card-body">Activating CU's untapped entrepreneurial potential — graduation projects to incubation, investor pipelines, and national summits.</div><div class="pillar-card-platforms"><span class="platform-tag">iCareer</span><span class="platform-tag">BrainsMingle</span></div></div>
+      <div class="pillar-card"><div class="pillar-card-num">PILLAR 05</div><span class="pillar-card-icon">🔗</span><div class="pillar-card-title">Platform Integration</div><div class="pillar-card-body">The connective layer — four platforms mapped to CU's digital infrastructure, sharing data and identity across the partnership.</div><div class="pillar-card-platforms"><span class="platform-tag">SIS</span><span class="platform-tag">UCCD</span><span class="platform-tag">FEPS</span><span class="platform-tag">DRTPC</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PILLAR 1 — white ═════════════════════════════════════════════════════ -->
+<section class="pillar-section white">
+  <div class="inner">
+    <div class="pillar-header">
+      <span class="pillar-num-badge">PILLAR 01</span>
+      <div><div class="pillar-title">Career & Employment Gateway</div><div class="pillar-subtitle">Wuzzuf · Forasna · iCareer</div></div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="strip-stat"><div class="strip-stat-num">7M</div><div class="strip-stat-label">Registered Job Seekers</div></div>
+      <div class="strip-stat"><div class="strip-stat-num">100K</div><div class="strip-stat-label">Hiring Companies</div></div>
+      <div class="strip-stat"><div class="strip-stat-num">26</div><div class="strip-stat-label">Faculties Served</div></div>
+      <div class="strip-stat"><div class="strip-stat-num">10+</div><div class="strip-stat-label">Years iCareer Experience</div></div>
+    </div>
+
+    <div class="pillar-context">
+      <div class="context-text">
+        <p>Egypt produces over <strong>3 million university graduates annually</strong>, yet no systematic institutional bridge connects them to the labor market. CU graduates must navigate the job market independently — relying on personal connections and informal networks.</p>
+        <p>Deploying BasharSoft's infrastructure in service of CU's students and graduates is not a marginal improvement — it is a structural transformation in how Cairo University connects its people to their professional futures.</p>
+      </div>
+      <div>
+        <div class="feature-grid cols-2">
+          <div class="feat"><span class="feat-icon">🏷️</span><div class="feat-title">CU Verified Profile Badge</div><div class="feat-body">Institutional credential on every CU profile — visible, employer-facing signal of affiliation across the full employer network.</div></div>
+          <div class="feat"><span class="feat-icon">🔍</span><div class="feat-title">Smart Job Discovery</div><div class="feat-body">Faculty-filtered feed — Engineering students see engineering roles, Medicine graduates see healthcare opportunities.</div></div>
+          <div class="feat"><span class="feat-icon">🔄</span><div class="feat-title">Internship-to-Hire Program</div><div class="feat-body">Employers commit upfront to conversion pathways — internship with a visible future, not just work experience.</div></div>
+          <div class="feat"><span class="feat-icon">📊</span><div class="feat-title">Institutional Dashboard</div><div class="feat-body">Real-time visibility into placements, employer engagement, hiring demand by discipline, and graduate outcomes.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:20px;"><div class="section-label" style="margin-bottom:16px;"><div class="section-label-line"></div><span class="section-label-text">Portal Features</span></div></div>
+    <div class="feature-grid cols-4">
+      <div class="feat"><span class="feat-icon">🎓</span><div class="feat-title">Employability Workshops</div><div class="feat-body">CV writing, interview prep, professional communication — bookable directly from the portal via iCareer.</div></div>
+      <div class="feat"><span class="feat-icon">🤖</span><div class="feat-title">AI & Future Skills Tracks</div><div class="feat-body">AI, data analysis, fintech, e-commerce — bridging the gap between academic curriculum and market demand.</div></div>
+      <div class="feat"><span class="feat-icon">🗺️</span><div class="feat-title">Career Path Guidance</div><div class="feat-body">Faculty-specific roadmaps from graduation to mid-career — live guidance sessions bookable through the portal.</div></div>
+      <div class="feat"><span class="feat-icon">📅</span><div class="feat-title">On-Campus Career Fairs</div><div class="feat-body">Portal as digital backbone for CU's physical events — registration, employer coordination, and campus recruitment.</div></div>
+    </div>
+
+    <div class="resp-table">
+      <div class="resp-header cu">Cairo University</div>
+      <div class="resp-header bs">BasharSoft</div>
+      <div class="resp-row-cu"><div class="resp-label">Official liaison</div>Designate a career services coordinator across all portal and on-campus activities</div>
+      <div class="resp-row-bs"><div class="resp-label blue">Platform build</div>Develop and maintain the CU-branded portal on Wuzzuf and Forasna infrastructure</div>
+      <div class="resp-row-cu"><div class="resp-label">Data access</div>Provide student and graduate data for portal activation with consent frameworks</div>
+      <div class="resp-row-bs"><div class="resp-label blue">Employer network</div>Manage all employer partnerships, populate CU channel, onboard into Internship-to-Hire</div>
+      <div class="resp-row-cu"><div class="resp-label">Campus access</div>Facilitate access for career fairs, employer days, and iCareer on-campus programming</div>
+      <div class="resp-row-bs"><div class="resp-label blue">Programming delivery</div>Design, staff, and deliver all career fairs, workshops, coaching, and guidance through iCareer</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PILLAR 2 — beige ════════════════════════════════════════════════════ -->
+<section class="pillar-section beige">
+  <div class="inner">
+    <div class="pillar-header">
+      <span class="pillar-num-badge">PILLAR 02</span>
+      <div><div class="pillar-title">Community & Engagement Infrastructure</div><div class="pillar-subtitle">BrainsMingle — CU's Institutional Engagement Platform</div></div>
+    </div>
+
+    <div class="pillar-context">
+      <div class="context-text">
+        <p>CU runs dozens of parallel engagement programs across 26 faculties with <strong>no unified infrastructure</strong>. Most programs are invisible to most students. A student can spend four years and never once have a structured mentoring interaction — not because the willingness to mentor doesn't exist, but because no system exists to connect them at a scale of 250,000.</p>
+        <p>BrainsMingle is deployed as CU's white-label engagement platform — fully branded under Cairo University's identity, accessible under a CU domain, and experienced by every user as the university's own platform. <strong>All data belongs to CU.</strong></p>
+      </div>
+      <div>
+        <div class="format-cards">
+          <div class="format-card"><span class="format-badge flash">Flash</span><div class="format-title">Flash Mentoring</div><div class="format-dur">30 minutes</div><div class="format-desc">Quick, focused career conversations — booked on demand, delivered on the platform, no coordination needed.</div></div>
+          <div class="format-card"><span class="format-badge semester">Semester</span><div class="format-title">Semester Track</div><div class="format-dur">1 Academic Term</div><div class="format-desc">Structured multi-session engagements across a full term — recurring guidance with a committed mentor.</div></div>
+          <div class="format-card"><span class="format-badge deep">Deep</span><div class="format-title">Deep Mentoring</div><div class="format-dur">Year-Long</div><div class="format-desc">Sustained professional relationships — the highest-impact track for students at critical career inflection points.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:20px;"><div class="section-label" style="margin-bottom:16px;"><div class="section-label-line"></div><span class="section-label-text">Platform Capabilities</span></div></div>
+    <div class="feature-grid cols-3">
+      <div class="feat"><span class="feat-icon">🗂️</span><div class="feat-title">Expert Directory</div><div class="feat-body">Searchable profiles for every mentor, advisor, and faculty member — expertise tags, availability calendar, direct booking. No coordinator in the middle.</div></div>
+      <div class="feat"><span class="feat-icon">🏫</span><div class="feat-title">Faculty Office Hours</div><div class="feat-body">Structured availability calendars replacing WhatsApp-based advising — automated booking, reminders, group sessions, and session recording.</div></div>
+      <div class="feat"><span class="feat-icon">💬</span><div class="feat-title">Persistent Community Spaces</div><div class="feat-body">Moderated institution-owned spaces per faculty, cohort, and interest group — replacing transient WhatsApp groups with infrastructure CU owns and can measure.</div></div>
+      <div class="feat"><span class="feat-icon">⚡</span><div class="feat-title">Speed Networking Events</div><div class="feat-body">Automated timed video rotations for career fairs and alumni events — every participant leaves with multiple real connections, zero coordinator effort.</div></div>
+      <div class="feat"><span class="feat-icon">📡</span><div class="feat-title">Webinar & Live Events</div><div class="feat-body">Panels, Demo Days, and faculty showcases delivered natively — registration tracking, host controls, auto-recording saved to the community space.</div></div>
+      <div class="feat"><span class="feat-icon">📈</span><div class="feat-title">Analytics & Accreditation</div><div class="feat-body">Live dashboard for mentoring utilization, engagement, and program effectiveness — exportable reports aligned with QAA, ABET, and EFMD requirements.</div></div>
+    </div>
+
+    <div class="resp-table">
+      <div class="resp-header cu">Cairo University</div>
+      <div class="resp-header bs">BasharSoft</div>
+      <div class="resp-row-cu"><div class="resp-label">Official designation</div>Position BrainsMingle as the official institutional engagement platform across all channels</div>
+      <div class="resp-row-bs"><div class="resp-label blue">Platform delivery</div>Build, configure, and maintain the white-label platform under CU's brand, colors, and domain</div>
+      <div class="resp-row-cu"><div class="resp-label">Faculty mandate</div>Require faculty participation in office hours and advising as part of institutional commitment</div>
+      <div class="resp-row-bs"><div class="resp-label blue">Onboarding</div>Train faculty, advisors, and initial mentor cohort with full technical and operational support</div>
+      <div class="resp-row-cu"><div class="resp-label">Enrollment data</div>Provide student data to enable automatic cohort-based community setup from day one</div>
+      <div class="resp-row-bs"><div class="resp-label blue">Operations</div>Manage platform infrastructure, security, technical support, and ongoing user experience</div>
+      <div class="resp-row-cu"><div class="resp-label">Accreditation</div>Use BrainsMingle engagement data and reports as evidence in accreditation submissions</div>
+      <div class="resp-row-bs"><div class="resp-label blue">Reporting</div>Deliver regular analytics reports and dashboard access to CU's academic leadership</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
