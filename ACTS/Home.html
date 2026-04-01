@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Basharsoft + Act Sustainable | Green Innovation Programs</title>
+    <!-- Google Fonts: Montserrat for titles, Lato for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lato:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #F7FCF5;
+            color: #1A2F1A;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, .nav-title, .stat-number, .phase-title, .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* accent colors */
+        :root {
+            --deep-green: #1B4D1B;
+            --forest: #2C6E2C;
+            --sage: #6A9C6E;
+            --light-mint: #E2F0E0;
+            --warm-sand: #FEF7E8;
+            --earth-orange: #E67E22;
+            --charcoal: #2E3B2E;
+        }
+
+        /* header / hero */
+        .hero {
+            background: linear-gradient(135deg, #173e17 0%, #2C6E2C 100%);
+            color: white;
+            padding: 50px 0 60px 0;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 48px;
+            border-bottom-right-radius: 48px;
+        }
+
+        .hero:before {
+            content: "🌱";
+            font-size: 260px;
+            opacity: 0.05;
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            pointer-events: none;
+            font-family: monospace;
+        }
+
+        .hero:after {
+            content: "⚡";
+            font-size: 180px;
+            opacity: 0.05;
+            position: absolute;
+            top: -30px;
+            left: -20px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .partner-badge {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .partner {
+            background: rgba(255,255,240,0.15);
+            backdrop-filter: blur(4px);
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 16px 0 16px 0;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 650px;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        /* ACTS Info Card */
+        .acts-card {
+            background: rgba(255,255,245,0.12);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            padding: 24px 28px;
+            margin-top: 24px;
+            border: 1px solid rgba(255,255,210,0.25);
+            max-width: 700px;
+        }
+
+        .acts-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .acts-card p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            opacity: 0.92;
+        }
+
+        /* programs section */
+        .programs-section {
+            padding: 70px 0 50px 0;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #4A6741;
+            margin-bottom: 48px;
+            font-size: 1.1rem;
+        }
+
+        .program-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 40px;
+            padding: 48px 44px;
+            width: 420px;
+            max-width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(108, 138, 88, 0.2);
+            flex: 0 1 420px;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 45px rgba(40, 70, 30, 0.12);
+            border-color: var(--sage);
+        }
+
+        .program-icon {
+            font-size: 4.5rem;
+            color: var(--forest);
+            margin-bottom: 24px;
+        }
+
+        .program-card h3 {
+            font-size: 1.9rem;
+            margin-bottom: 16px;
+            color: var(--deep-green);
+        }
+
+        .program-card p {
+            color: #4a5e44;
+            margin-bottom: 32px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .btn-program {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--forest);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-program:hover {
+            background: var(--deep-green);
+            transform: scale(1.02);
+            gap: 16px;
+        }
+
+        .btn-hackathon {
+            background: linear-gradient(135deg, #2C6E2C, #1B4D1B);
+        }
+
+        .btn-training {
+            background: linear-gradient(135deg, #E67E22, #c95f0a);
+        }
+
+        /* comparison cards */
+        .comparison-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            margin: 40px 0 40px;
+        }
+
+        .comparison-card {
+            flex: 1;
+            background: white;
+            border-radius: 32px;
+            padding: 28px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(108, 138, 88, 0.2);
+            transition: all 0.25s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px rgba(40, 70, 30, 0.08);
+            border-color: var(--sage);
+        }
+
+        .comparison-icon {
+            font-size: 2rem;
+            color: var(--forest);
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .comparison-card h3 {
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+        }
+
+        .feature-list i {
+            color: var(--earth-orange);
+            width: 20px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: #1D3A1A;
+            color: #CFE6C5;
+            padding: 40px 0;
+            text-align: center;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 780px) {
+            .hero h1 { 
+                font-size: 2rem;
+                white-space: normal;
+            }
+            .program-card { 
+                width: 100%; 
+                max-width: 100%;
+                padding: 36px 28px;
+            }
+            .program-grid { gap: 24px; }
+            .acts-card { padding: 18px; }
+            .section-title { font-size: 1.8rem; }
+        }
+
+        .text-accent {
+            color: var(--earth-orange);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Section with ACTS brief -->
+<div class="hero">
+    <div class="container hero-content">
+        <div class="partner-badge">
+            <span class="partner"><i class="fas fa-code-branch"></i> Basharsoft (WUZZUF / Forasna)</span>
+            <span class="partner"><i class="fas fa-leaf"></i> Act Sustainable (ACTS)</span>
+        </div>
+        <h1>Green Innovation Programs Hub</h1>
+        <p class="hero-tagline">Empowering Egypt’s youth with sustainability skills, hands-on innovation, and direct pathways to green careers.</p>
+        
+        <!-- Brief info about ACTS -->
+        <div class="acts-card">
+            <h3><i class="fas fa-seedling"></i> About Act Sustainable (ACTS)</h3>
+            <p>Act Sustainable is a leading sustainability advisory and capacity-building organization dedicated to accelerating the green transition in the MENA region. With deep expertise in ESG frameworks, carbon accounting, circular economy, and climate strategy, ACTS bridges the gap between sustainability theory and industrial practice. As technical partner for both programs, ACTS designs curricula, validates technical solutions, and provides expert mentorship to ensure market-ready outcomes aligned with Egypt Vision 2030 and global climate standards.</p>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="container">
+        <!-- Available Programs & Initiatives Section -->
+        <div class="programs-section">
+            <h2 class="section-title">Available Programs & Initiatives</h2>
+            <p class="section-sub">Explore our flagship initiatives designed to drive green innovation and sustainable employability in Egypt</p>
+            
+            <div class="program-grid">
+                <!-- Hackathon Card - dynamic link to Hackathon.html -->
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Sustainability Innovation Hackathons</h3>
+                    <p>From ideas to impact — 3‑day innovation sprints, prototyping, mentorship, and venture creation. Generate market-ready green solutions with industry backing.</p>
+                    <a href="Hackathon.html" class="btn-program btn-hackathon" target="_self">
+                        <i class="fas fa-rocket"></i> Explore Hackathons
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Training Card - dynamic link to Training.html -->
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Green Corporate Training & Employability</h3>
+                    <p>Data-driven technical training, skills verification, and direct recruitment pathways. 500 trainees, 60% placement target in energy, waste & sustainable manufacturing.</p>
+                    <a href="Training.html" class="btn-program btn-training" target="_self">
+                        <i class="fas fa-chalkboard-user"></i> Explore Training
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick comparison / dual benefit (statistics table removed as requested) -->
+        <div class="comparison-grid">
+            <div class="comparison-card">
+                <i class="fas fa-flask comparison-icon"></i>
+                <h3>Hackathon Focus</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Prototype development & venture creation</li>
+                    <li><i class="fas fa-check-circle"></i> Investor linkage & Demo Day</li>
+                    <li><i class="fas fa-check-circle"></i> 3‑day sprint · 100+ participants per round</li>
+                    <li><i class="fas fa-check-circle"></i> Technical & business mentorship</li>
+                </ul>
+                <p style="margin-top: 16px; color: var(--earth-orange); font-weight: 500;"><i class="fas fa-lightbulb"></i> Ideal for innovators & aspiring entrepreneurs</p>
+            </div>
+            <div class="comparison-card">
+                <i class="fas fa-briefcase comparison-icon"></i>
+                <h3>Training Focus</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Technical upskilling (Solar PV, ESG, CBAM, Waste)</li>
+                    <li><i class="fas fa-check-circle"></i> Verified digital badges on WUZZUF profiles</li>
+                    <li><i class="fas fa-check-circle"></i> 8‑12 months · 500 graduates</li>
+                    <li><i class="fas fa-check-circle"></i> Direct recruitment & internship facilitation</li>
+                </ul>
+                <p style="margin-top: 16px; color: var(--earth-orange); font-weight: 500;"><i class="fas fa-graduation-cap"></i> Ideal for graduates & job seekers</p>
+            </div>
+        </div>
+        
+        <!-- Note about file structure (subtle) -->
+        <div style="text-align: center; margin-bottom: 20px; font-size: 0.85rem; color: #6F8F6A;">
+            <i class="fas fa-folder-open"></i> Access both programs directly — all files are located in the same folder
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 24px;">
+            <span><i class="fas fa-code-branch"></i> Basharsoft (WUZZUF/Forasna)</span>
+            <span><i class="fas fa-leaf"></i> Act Sustainable (ACTS)</span>
+            <span><i class="fas fa-globe"></i> Egypt National Programs</span>
+            <span><i class="fas fa-chalkboard"></i> Green Skills · Innovation · Employability</span>
+        </div>
+        <p style="opacity: 0.8;">Driving a resilient green economy through talent development and breakthrough solutions. <br>© 2026 · Basharsoft + Act Sustainable Partnership</p>
+    </div>
+</footer>
+
+</body>
+</html>
