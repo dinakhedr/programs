@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Basharsoft Grant Intelligence | EU Funds Deep Analysis</title>
+  <!-- Google Fonts: Montserrat (titles) + Lato (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Lato:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f6fb;
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 1.45;
+      color: #1a2c3e;
+      padding: 1.8rem 1.8rem 2.5rem 1.8rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 44px;
+      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.12);
+      overflow: hidden;
+      padding: 1.8rem 2.2rem;
+    }
+
+    h1, h2, h3, .mont-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      background: linear-gradient(135deg, #0B2B5E, #1E4A7A);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.7rem;
+      margin: 1.6rem 0 1rem 0;
+      border-left: 6px solid;
+      padding-left: 1rem;
+      font-weight: 800;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+      margin: 0.6rem 0 0.4rem;
+      font-weight: 700;
+    }
+
+    .wuzzuf-text { color: #0A58CA; font-weight: 800; }
+    .icareer-text { color: #2E7D32; font-weight: 800; }
+    .brains-text { color: #8A2BE2; font-weight: 800; }
+    .badge-wuzzuf { background: #eef3ff; color: #0A58CA; border-radius: 30px; padding: 0.2rem 0.8rem; font-weight: 700; display: inline-block; font-size: 0.8rem;}
+    .badge-icareer { background: #e8f3e8; color: #2E7D32; border-radius: 30px; padding: 0.2rem 0.8rem; font-weight: 700; display: inline-block; font-size: 0.8rem;}
+    .badge-brains { background: #f3ebff; color: #8A2BE2; border-radius: 30px; padding: 0.2rem 0.8rem; font-weight: 700; display: inline-block; font-size: 0.8rem;}
+
+    /* Each opportunity as a full-width row card */
+    .opp-row {
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+      margin-bottom: 1.8rem;
+      border: 1px solid #e9eef3;
+      transition: all 0.2s ease;
+      overflow: hidden;
+    }
+    .opp-row:hover {
+      box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+      border-color: #cddfed;
+    }
+    .opp-header {
+      padding: 1.2rem 1.8rem 0.6rem 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid #eef2f8;
+    }
+    .opp-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.55rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .relevance-chip {
+      background: #ffecb3;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+    .fund-dead {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      font-weight: 700;
+      align-items: center;
+    }
+    .opp-body {
+      padding: 1.2rem 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+    }
+    .brief-col {
+      flex: 1.2;
+      min-width: 260px;
+    }
+    .analysis-col {
+      flex: 1.6;
+      min-width: 280px;
+    }
+    .info-line {
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .info-label-sm {
+      font-weight: 900;
+      min-width: 100px;
+      font-size: 0.85rem;
+      color: #2c4b6e;
+    }
+    .fund-tag {
+      background: #eef2fa;
+      border-radius: 20px;
+      padding: 0.2rem 1rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .btn-outline-sm {
+      font-size: 0.8rem;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      border: 1.2px solid #b9cfec;
+      background: white;
+      text-decoration: none;
+      font-weight: 700;
+      color: #1f6392;
+      transition: 0.15s;
+      display: inline-block;
+    }
+    .btn-outline-sm:hover {
+      background: #eef3fc;
+    }
+    .deadline-urgent {
+      color: #c7362b;
+      font-weight: 800;
+    }
+    .official-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .brief-full {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      background: #fefef7;
+      padding: 0.5rem 0.6rem;
+      border-radius: 18px;
+      margin-top: 6px;
+    }
+    .brand-analysis-block {
+      background: #fafcff;
+      padding: 0.8rem 1rem;
+      border-radius: 24px;
+      margin-top: 8px;
+    }
+    .brand-item {
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eef2f8;
+    }
+    .brand-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .brand-desc {
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: #2c3e50;
+      margin-left: 4px;
+    }
+
+    /* Redesigned Priority Roadmap - modern card grid */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .roadmap-card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      border: 1px solid #eef2f8;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .roadmap-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 28px rgba(0,0,0,0.1);
+    }
+    .roadmap-rank {
+      font-size: 3rem;
+      font-weight: 900;
+      font-family: 'Montserrat', sans-serif;
+      position: absolute;
+      top: 0.8rem;
+      right: 1.2rem;
+      opacity: 0.15;
+      color: #1a2c3e;
+    }
+    .roadmap-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+    }
+    .roadmap-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .roadmap-desc {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: #4a5b6e;
+      margin-bottom: 1rem;
+    }
+    .roadmap-deadline {
+      display: inline-block;
+      background: #f0f4fa;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .roadmap-entities {
+      margin-top: 1rem;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .strat-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin: 1.2rem 0;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow-x: auto;
+      display: block;
+    }
+    .strat-table th, .strat-table td {
+      border-bottom: 1px solid #e2edf2;
+      padding: 12px 8px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .strat-table th {
+      background: #eef3fc;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 900px) {
+      body { padding: 1rem; }
+      .container { padding: 1rem; }
+      .opp-body { flex-direction: column; }
+      .opp-header { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  
+  <!-- HERO section -->
+  <div style="background: linear-gradient(105deg, #f0f6ff 0%, #ffffff 100%); border-radius: 38px; padding: 2.8rem 2.4rem; margin-bottom: 2rem; border: 1px solid #e2edf5;">
+    <div style="max-width: 95%;">
+      <h1 style="margin-bottom: 0.8rem;">⚡ Basharsoft · Grant Intelligence Dashboard</h1>
+      <p style="font-size: 1.35rem; font-weight: 500; color: #1f4662; margin-bottom: 1rem;">EU & international funding opportunities — full strategic analysis for <strong class="wuzzuf-text">Wuzzuf</strong>, <strong class="icareer-text">iCareer</strong> & <strong class="brains-text">BrainsMingle</strong>.</p>
+      <div style="background: #ffffffcc; backdrop-filter: blur(2px); border-radius: 28px; padding: 1rem 1.6rem; border-left: 6px solid #0A58CA;">
+        <i class="fas fa-chalkboard-user" style="margin-right: 12px; color:#0A58CA;"></i> 
+        <strong>Brief:</strong> Egyptian labor-tech ecosystem scaling via European grants. Wuzzuf (AI labor intelligence), iCareer (career development & university upskilling), BrainsMingle (startup & innovation ecosystem). The goal: consortium-driven, high-impact funding to unlock €500k–€10M+.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== EACH OPPORTUNITY IN SEPARATE ROW ============= -->
+  <h2><i class="fas fa-chart-simple"></i> Strategic grant opportunities</h2>
+  <div id="opportunitiesList"></div>
+
+  <!-- ADDITIONAL STRATEGIC MATRIX & RANKINGS -->
+  <h2><i class="fas fa-table-list"></i> Entity fit & priority ranking</h2>
+  <div style="overflow-x: auto;">
+    <table class="strat-table">
+      <thead>
+        <tr><th>Program</th><th>Wuzzuf ★</th><th>iCareer ★</th><th>BrainsMingle ★</th><th>Best Lead</th><th>Deadline</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>EIC Accelerator</strong></td><td class="wuzzuf-text">5</td><td class="icareer-text">4</td><td>3</td><td>Wuzzuf (EU sub)</td><td>Rolling</td></tr>
+        <tr><td><strong>Digital Europe – Advanced Digital Skills</strong></td><td class="wuzzuf-text">5</td><td class="icareer-text">5</td><td class="brains-text">4</td><td>iCareer (consortium)</td><td>Rolling / Mar 2026</td></tr>
+        <tr><td><strong>ADA Business Partnership Challenge</strong></td><td class="wuzzuf-text">4</td><td>3</td><td>3</td><td>Wuzzuf</td><td class="deadline-urgent">Apr 12, 2026</td></tr>
+        <tr><td><strong>EIC Pre‑Accelerator</strong></td><td class="wuzzuf-text">4</td><td>3</td><td>3</td><td>Wuzzuf</td><td>Varies</td></tr>
+        <tr><td><strong>European Innovation Ecosystems</strong></td><td>4</td><td>3</td><td class="brains-text">4</td><td>Wuzzuf/BrainsMingle</td><td>Varies</td></tr>
+        <tr><td><strong>Erasmus+ Capacity Building HE</strong></td><td>4</td><td class="icareer-text">5</td><td>4</td><td>iCareer</td><td>Annual (Feb)</td></tr>
+        <tr><td><strong>EIT Culture & Creativity</strong></td><td>3</td><td>3</td><td class="brains-text">4</td><td>BrainsMingle</td><td>Rolling</td></tr>
+        <tr><td><strong>Horizon Europe AI4Creatives</strong></td><td>3</td><td>3</td><td class="brains-text">4</td><td>BrainsMingle</td><td>2027 pipeline</td></tr>
+      </tbody>
+     </>
+  </div>
+
+  <!-- REDESIGNED Basharsoft priority roadmap - modern card layout -->
+  <h2><i class="fas fa-arrow-trend-up"></i> Basharsoft priority roadmap</h2>
+  <div class="roadmap-grid">
+    <div class="roadmap-card">
+      <div class="roadmap-rank">#1</div>
+      <div class="roadmap-icon"><i class="fas fa-laptop-code" style="color: #0A58CA;"></i></div>
+      <div class="roadmap-title">Digital Europe – Advanced Digital Skills</div>
+      <div class="roadmap-desc">Highest funding ceiling (€1M–€8M). Perfect synergy for all three entities. iCareer as lead, Wuzzuf provides labor data, BrainsMingle adds entrepreneurship layer.</div>
+      <div><span class="roadmap-deadline"><i class="far fa-calendar-alt"></i> Rolling / Mar 2026</span></div>
+      <div class="roadmap-entities">
+        <span class="badge-wuzzuf">Wuzzuf ★5</span>
+        <span class="badge-icareer">iCareer ★5</span>
+        <span class="badge-brains">BrainsMingle ★4</span>
+      </div>
+    </div>
+    <div class="roadmap-card">
+      <div class="roadmap-rank">#2</div>
+      <div class="roadmap-icon"><i class="fas fa-handshake" style="color: #c7362b;"></i></div>
+      <div class="roadmap-title">ADA Business Partnership Challenge</div>
+      <div class="roadmap-desc">Imminent deadline — Egypt can lead. Wuzzuf as primary applicant leveraging labor-market analytics for job creation. Private-sector partnership focus.</div>
+      <div><span class="roadmap-deadline deadline-urgent"><i class="far fa-calendar-alt"></i> Apr 12, 2026</span></div>
+      <div class="roadmap-entities">
+        <span class="badge-wuzzuf">Wuzzuf ★4</span>
+        <span class="badge-icareer">iCareer ★3</span>
+        <span class="badge-brains">BrainsMingle ★3</span>
+      </div>
+    </div>
+    <div class="roadmap-card">
+      <div class="roadmap-rank">#3</div>
+      <div class="roadmap-icon"><i class="fas fa-university" style="color: #2E7D32;"></i></div>
+      <div class="roadmap-title">Erasmus+ Capacity Building in HE</div>
+      <div class="roadmap-desc">Strong university alignment. iCareer natural lead, Wuzzuf data helps curricula modernization, BrainsMingle adds student entrepreneurship programs.</div>
+      <div><span class="roadmap-deadline"><i class="far fa-calendar-alt"></i> Annual (Feb)</span></div>
+      <div class="roadmap-entities">
+        <span class="badge-wuzzuf">Wuzzuf ★4</span>
+        <span class="badge-icareer">iCareer ★5</span>
+        <span class="badge-brains">BrainsMingle ★4</span>
+      </div>
+    </div>
+    <div class="roadmap-card">
+      <div class="roadmap-rank">#4</div>
+      <div class="roadmap-icon"><i class="fas fa-microchip" style="color: #0A58CA;"></i></div>
+      <div class="roadmap-title">EIC Accelerator</div>
+      <div class="roadmap-desc">Highest value deep-tech play (up to €12.5M). Requires EU subsidiary or lead partner. Wuzzuf's AI recruitment platform fits perfectly.</div>
+      <div><span class="roadmap-deadline"><i class="far fa-calendar-alt"></i> Rolling</span></div>
+      <div class="roadmap-entities">
+        <span class="badge-wuzzuf">Wuzzuf ★5</span>
+        <span class="badge-icareer">iCareer ★4</span>
+        <span class="badge-brains">BrainsMingle ★3</span>
+      </div>
+    </div>
+    <div class="roadmap-card">
+      <div class="roadmap-rank">#5</div>
+      <div class="roadmap-icon"><i class="fas fa-building" style="color: #8A2BE2;"></i></div>
+      <div class="roadmap-title">European Innovation Ecosystems</div>
+      <div class="roadmap-desc">Strong ecosystem narrative. BrainsMingle as enabler, Wuzzuf provides hiring pipelines for startups. Requires 3-country consortium.</div>
+      <div><span class="roadmap-deadline"><i class="far fa-calendar-alt"></i> Varies by topic</span></div>
+      <div class="roadmap-entities">
+        <span class="badge-wuzzuf">Wuzzuf ★4</span>
+        <span class="badge-icareer">iCareer ★3</span>
+        <span class="badge-brains">BrainsMingle ★4</span>
+      </div>
+    </div>
+    <div class="roadmap-card">
+      <div class="roadmap-rank">#6</div>
+      <div class="roadmap-icon"><i class="fas fa-seedling" style="color: #0A58CA;"></i></div>
+      <div class="roadmap-title">EIC Pre‑Accelerator</div>
+      <div class="roadmap-desc">Stepping stone toward EIC Accelerator. Validates AI HR-tech products with seed funding (€500k–€1M). Good for early-stage innovation.</div>
+      <div><span class="roadmap-deadline"><i class="far fa-calendar-alt"></i> Varies by call</span></div>
+      <div class="roadmap-entities">
+        <span class="badge-wuzzuf">Wuzzuf ★4</span>
+        <span class="badge-icareer">iCareer ★3</span>
+        <span class="badge-brains">BrainsMingle ★3</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Consolidated grant data: each card has Brief, Beneficiaries, and Analysis for Basharsoft with 3 branded bubbles + star rating + description.
+  const opportunities = [
+    {
+      name: "EIC Accelerator (Horizon Europe)",
+      icon: "microchip",
+      funding: "Up to €2.5M grant + €10M equity",
+      deadline: "Multiple cut-offs yearly",
+      relevance: "5",
+      link: "https://eic.ec.europa.eu/eic-funding-opportunities/eic-accelerator_en",
+      brief: "The European Innovation Council's flagship deep-tech program for individual startups and SMEs developing breakthrough innovations with global market potential. Combines a non-dilutive grant (up to €2.5M) with optional equity investment (up to €10M) from the EIC Fund. Supports high-risk, high-impact technologies, including AI-driven platforms, scalable labor-market intelligence, and advanced recruitment tools. Ideal for companies aiming to become European market leaders.",
+      beneficiaries: "Startups and SMEs based in EU member states or Horizon-associated countries. Egyptian entities can participate as consortium partners but cannot be the lead applicant unless Egypt is formally associated to Horizon Europe. Exceptional for deep-tech scale-ups.",
+      brands: [
+        { name: "Wuzzuf", rating: 5, color: "wuzzuf-text", badge: "badge-wuzzuf", description: "Direct fit: positions Recruitera AI as a proprietary labor-market intelligence platform with EU scaling potential. Requires EU subsidiary or lead partner to apply." },
+        { name: "iCareer", rating: 4, color: "icareer-text", badge: "badge-icareer", description: "Moderate fit: iCareer could be included as career intelligence partner if framed as AI-powered skills-matching engine, though the core focus is deep tech." },
+        { name: "BrainsMingle", rating: 3, color: "brains-text", badge: "badge-brains", description: "Lower unless BrainsMingle develops a distinct AI/tech product; could play minor consortium role." }
+      ],
+      leadAdvice: "Wuzzuf (EU subsidiary needed)"
+    },
+    {
+      name: "Digital Europe – Advanced Digital Skills",
+      icon: "laptop-code",
+      funding: "€1M–€8M",
+      deadline: "Rolling / March 2026 (example cut-off)",
+      relevance: "5",
+      link: "https://digital-strategy.ec.europa.eu/en/activities/digital-programme",
+      brief: "Flagship EU program under Digital Europe that funds large-scale upskilling and reskilling initiatives in advanced digital technologies: AI, cybersecurity, data analytics, cloud, and digital transformation. Supports curriculum development, training delivery, job placement pipelines, and industry-academia collaboration. Projects typically involve consortia of universities, training providers, companies, and public bodies. Strong emphasis on measurable employment outcomes and closing the digital skills gap.",
+      beneficiaries: "Universities, training providers, companies, public bodies delivering digital skills programs. Consortium-based; non-EU entities (including Egyptian organizations) can participate as associated partners when the call allows. Egypt-based entities bring labor-market data and training infrastructure.",
+      brands: [
+        { name: "Wuzzuf", rating: 5, color: "wuzzuf-text", badge: "badge-wuzzuf", description: "Labor-market data & employer engagement: provides real-time hiring demand analytics to align training with actual job opportunities. Core partner." },
+        { name: "iCareer", rating: 5, color: "icareer-text", badge: "badge-icareer", description: "Perfect match: iCareer’s career development and digital skills delivery maps directly onto program objectives. Natural lead for the consortium." },
+        { name: "BrainsMingle", rating: 4, color: "brains-text", badge: "badge-brains", description: "Entrepreneurship/innovation layer: BrainsMingle can deliver startup-focused digital skills tracks and connect talent to creative/tech ventures." }
+      ],
+      leadAdvice: "iCareer (consortium lead with EU university partner)"
+    },
+    {
+      name: "ADA Business Partnership Challenge 2026",
+      icon: "handshake",
+      funding: "€500k–€1M",
+      deadline: "Apr 12, 2026",
+      relevance: "4",
+      link: "https://www.entwicklung.at/en/ada/calls/calls-detail/business-partnership-challenge-2026",
+      brief: "Austrian Development Agency (ADA) program co-funding private-sector partnerships between European companies and organizations in developing/emerging markets. Focuses on creating sustainable business models with social impact — particularly employment, economic inclusion, and job creation. Projects must demonstrate clear private-sector partnership and measurable employment outcomes. Egypt is typically an eligible country and can act as lead or co-applicant.",
+      beneficiaries: "Private companies, NGOs, research institutions from Austria or other EU member states partnering with entities in eligible developing countries. Egyptian organizations can be lead applicants when partnering with an Austrian/EU entity. Ideal for job creation initiatives.",
+      brands: [
+        { name: "Wuzzuf", rating: 4, color: "wuzzuf-text", badge: "badge-wuzzuf", description: "Strong fit: Wuzzuf can lead with labor-market analytics to identify job creation opportunities and measure impact. Direct private-sector role." },
+        { name: "iCareer", rating: 3, color: "icareer-text", badge: "badge-icareer", description: "Employment enablement angle: iCareer could contribute career readiness and placement programs if part of a broader job creation scheme." },
+        { name: "BrainsMingle", rating: 3, color: "brains-text", badge: "badge-brains", description: "Innovation partnership potential: BrainsMingle could support startup integration or ecosystem building within the project scope." }
+      ],
+      leadAdvice: "Wuzzuf (lead / co-applicant)"
+    },
+    {
+      name: "EIC Pre‑Accelerator",
+      icon: "seedling",
+      funding: "€500k–€1M",
+      deadline: "Varies by call",
+      relevance: "4",
+      link: "https://eic.ec.europa.eu/eic-funding-opportunities/eic-pre-accelerator_en",
+      brief: "Lightweight entry point into the EIC ecosystem, designed to help early-stage innovators validate technology, refine business models, and prepare for larger EIC programs (Accelerator). Includes coaching, training, and seed funding. Supports deep-tech and early-stage AI, HR-tech, and digital innovations.",
+      beneficiaries: "Early-stage startups and individuals with innovative ideas (EU/associated). Egyptian entities can join as consortium partners with an EU lead. Good for validating AI HR-tech platforms.",
+      brands: [
+        { name: "Wuzzuf", rating: 4, color: "wuzzuf-text", badge: "badge-wuzzuf", description: "Ideal to pilot AI recruitment tools or labor-market intelligence MVP before scaling to EIC Accelerator. Strong alignment." },
+        { name: "iCareer", rating: 3, color: "icareer-text", badge: "badge-icareer", description: "Possible if iCareer develops a new career-tech product or digital assessment tool; moderate fit." },
+        { name: "BrainsMingle", rating: 3, color: "brains-text", badge: "badge-brains", description: "Startup innovation angle: could support if BrainsMingle builds a tech-enabled platform for startup talent." }
+      ],
+      leadAdvice: "Wuzzuf (EU partner needed)"
+    },
+    {
+      name: "European Innovation Ecosystems (Horizon Europe)",
+      icon: "building",
+      funding: "€2M–€6M",
+      deadline: "Varies by topic",
+      relevance: "4",
+      link: "https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/european-innovation-ecosystems_en",
+      brief: "Horizon Europe work program funding projects that strengthen connections between startups, investors, corporates, universities, and policymakers. Aims to build and scale regional/national innovation ecosystems, improve access to talent, and facilitate cross-border collaboration. Supports incubators, accelerators, and ecosystem-wide initiatives.",
+      beneficiaries: "Consortia of public/private organizations — incubators, accelerators, universities, government bodies, and companies — typically requiring 3+ partners from different countries. Egyptian entities can join as associate partners, providing ecosystem links to North Africa/Middle East.",
+      brands: [
+        { name: "Wuzzuf", rating: 4, color: "wuzzuf-text", badge: "badge-wuzzuf", description: "Provides hiring pipeline analytics and labor-market data for startups within ecosystems. Core partner to demonstrate talent flow." },
+        { name: "iCareer", rating: 3, color: "icareer-text", badge: "badge-icareer", description: "Career development node: could support skills matching for startups but not central." },
+        { name: "BrainsMingle", rating: 4, color: "brains-text", badge: "badge-brains", description: "Natural lead: BrainsMingle as ecosystem enabler for startups, accelerators, and innovation programs. Strong fit." }
+      ],
+      leadAdvice: "Wuzzuf or BrainsMingle (with EU partners)"
+    },
+    {
+      name: "Erasmus+ Capacity Building in Higher Education",
+      icon: "university",
+      funding: "€400k–€1M",
+      deadline: "Annual call (typically February)",
+      relevance: "4",
+      link: "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-organisations/capacity-building-in-higher-education",
+      brief: "Erasmus+ action funding partnerships between European universities and higher education institutions in partner regions (including Egypt). Aims to modernize curricula, improve governance, align academic programs with labor-market needs, and foster international cooperation. Non-academic organizations can participate as associate partners providing industry expertise and employment data.",
+      beneficiaries: "Higher education institutions (Egypt explicitly eligible). Projects require a mix of EU and non-EU universities. Non-academic partners like Wuzzuf/iCareer/BrainsMingle bring market insights, career development, and entrepreneurship training.",
+      brands: [
+        { name: "Wuzzuf", rating: 4, color: "wuzzuf-text", badge: "badge-wuzzuf", description: "Labor-market data provider: helps universities align curricula with actual hiring demand. Strong supporting role." },
+        { name: "iCareer", rating: 5, color: "icareer-text", badge: "badge-icareer", description: "Lead candidate: iCareer’s university-facing career development and training programs map directly to Erasmus+ objectives. Natural driver." },
+        { name: "BrainsMingle", rating: 4, color: "brains-text", badge: "badge-brains", description: "Student entrepreneurship & innovation programs: BrainsMingle can deliver startup training and ecosystem linkages." }
+      ],
+      leadAdvice: "iCareer (with EU & Egyptian universities)"
+    },
+    {
+      name: "EIT Culture & Creativity Innovation Calls",
+      icon: "palette",
+      funding: "€150k–€1M",
+      deadline: "Rolling calls",
+      relevance: "3",
+      link: "https://eit-culture-creativity.eu/opportunities",
+      brief: "Funding from EIT’s Knowledge and Innovation Community focused on culture and creative industries (design, media, entertainment, fashion, architecture, cultural heritage). Supports startups, scaleups, and innovation projects that drive digital and creative transformation.",
+      beneficiaries: "Startups, SMEs, organizations in creative sectors. EIT KIC partners and associated entities have priority access; non-EU entities may join as partners with EIT affiliation.",
+      brands: [
+        { name: "Wuzzuf", rating: 3, color: "wuzzuf-text", badge: "badge-wuzzuf", description: "Creative sector hiring analytics: moderate fit if focusing on talent pipelines for creative industries." },
+        { name: "iCareer", rating: 3, color: "icareer-text", badge: "badge-icareer", description: "Skills alignment in creative fields: moderate contribution." },
+        { name: "BrainsMingle", rating: 4, color: "brains-text", badge: "badge-brains", description: "Strong fit: BrainsMingle can act as startup accelerator/innovation partner for creative tech ventures." }
+      ],
+      leadAdvice: "BrainsMingle (with EIT affiliation)"
+    },
+    {
+      name: "Horizon Europe – AI4Creatives (HERITAGE‑02)",
+      icon: "robot",
+      funding: "€3M–€5M",
+      deadline: "Expected 2027",
+      relevance: "3",
+      link: "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-HERITAGE-02",
+      brief: "Future Horizon Europe research and innovation call (expected 2027) focused on AI applications within creative and heritage industries — covering talent pipelines, creative processes, digital adoption, and AI-driven tools for cultural sectors. Requires research consortia with academic and industry partners.",
+      beneficiaries: "Research consortia including universities, cultural institutions, tech companies, and industry stakeholders. Minimum 3 partners from different EU/associated countries. Egyptian entities can join as associate partners with specialized AI or creative industry expertise.",
+      brands: [
+        { name: "Wuzzuf", rating: 3, color: "wuzzuf-text", badge: "badge-wuzzuf", description: "Potential AI talent data contributor for creative sectors; moderate fit." },
+        { name: "iCareer", rating: 3, color: "icareer-text", badge: "badge-icareer", description: "Skills mapping for creative AI roles: supportive role." },
+        { name: "BrainsMingle", rating: 4, color: "brains-text", badge: "badge-brains", description: "Strong long-term opportunity: BrainsMingle can position as creative tech startup support & innovation partner." }
+      ],
+      leadAdvice: "BrainsMingle (position for 2027)"
+    }
+  ];
+
+  const container = document.getElementById('opportunitiesList');
+  function renderRows() {
+    container.innerHTML = '';
+    opportunities.forEach(opp => {
+      const row = document.createElement('div');
+      row.className = 'opp-row';
+      const officialLinkHtml = `<a href="${opp.link}" target="_blank" class="official-link" style="background:#eef2fa; padding:0.2rem 0.8rem; border-radius:30px; text-decoration:none; font-weight:700; font-size:0.8rem;"><i class="fas fa-external-link-alt"></i> Official call</a>`;
+      const deadlineHtml = `<span class="${opp.deadline.includes('Apr 12') ? 'deadline-urgent' : ''}"><i class="far fa-calendar-alt"></i> ${opp.deadline}</span>`;
+      
+      let brandAnalysisHtml = '';
+      opp.brands.forEach(b => {
+        brandAnalysisHtml += `
+          <div class="brand-item">
+            <div class="brand-header">
+              <span class="${b.badge}">${b.name} ★ ${b.rating}</span>
+            </div>
+            <div class="brand-desc">${b.description}</div>
+          </div>
+        `;
+      });
+
+      row.innerHTML = `
+        <div class="opp-header">
+          <div class="opp-title">
+            <i class="fas fa-${opp.icon}" style="font-size: 1.6rem; color:#2c6e9e;"></i>
+            <span>${opp.name}</span>
+            <span class="relevance-chip"><i class="fas fa-star"></i> Relevance ${opp.relevance}</span>
+          </div>
+          <div class="fund-dead">
+            <span class="fund-tag"><i class="fas fa-euro-sign"></i> ${opp.funding}</span>
+            ${officialLinkHtml}
+            ${deadlineHtml}
+          </div>
+        </div>
+        <div class="opp-body">
+          <div class="brief-col">
+            <div class="info-line"><span class="info-label-sm"><i class="fas fa-info-circle"></i> Brief</span></div>
+            <div class="brief-full">${opp.brief}</div>
+            <div class="info-line" style="margin-top: 12px;"><span class="info-label-sm"><i class="fas fa-users"></i> Beneficiaries</span><span>${opp.beneficiaries}</span></div>
+            <div class="info-line"><span class="info-label-sm"><i class="fas fa-bullhorn"></i> Best lead</span><span class="badge-wuzzuf">${opp.leadAdvice}</span></div>
+          </div>
+          <div class="analysis-col">
+            <div class="info-label-sm" style="margin-bottom: 10px;"><i class="fas fa-chart-line"></i> Analysis for Basharsoft</div>
+            <div class="brand-analysis-block">
+              ${brandAnalysisHtml}
+            </div>
+          </div>
+        </div>
+      `;
+      container.appendChild(row);
+    });
+  }
+  renderRows();
+</script>
+</body>
+</html>
