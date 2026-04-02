@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BasharSoft × Cairo University — Implementation Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange:      #E8621A;
+    --orange-dim:  #C04E0D;
+    --orange-pale: #FEF0E7;
+    --navy:        #0C2340;
+    --blue:        #1B4F9B;
+    --gold:        #C8972A;
+    --white:       #FFFFFF;
+    --beige:       #F4EFE9;
+    --text:        #1A1A2E;
+    --muted:       #5A6070;
+    --border:      rgba(12,35,64,0.09);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lato', sans-serif; font-weight: 400; background: var(--white); color: var(--text); overflow-x: hidden; }
+  .inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+
+  .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .section-label-line { width: 28px; height: 2px; background: var(--orange); flex-shrink: 0; }
+  .section-label-text { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.16em; color: var(--orange); text-transform: uppercase; }
+
+  /* ── HERO ── */
+  .hero { min-height: 58vh; background: var(--navy); position: relative; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(ellipse 80% 60% at 72% 50%, rgba(27,79,155,0.38) 0%, transparent 68%), radial-gradient(ellipse 40% 40% at 8% 80%, rgba(232,98,26,0.20) 0%, transparent 60%); z-index: 0; }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px); background-size: 56px 56px; z-index: 0; }
+  .hero-circle { position: absolute; right: -90px; top: 50%; transform: translateY(-50%); width: 480px; height: 480px; border-radius: 50%; border: 1px solid rgba(232,98,26,0.13); z-index: 0; }
+  .hero-circle::before { content: ''; position: absolute; inset: 52px; border-radius: 50%; border: 1px solid rgba(232,98,26,0.07); }
+  .hero-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 64px 48px; width: 100%; }
+  .hero-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; color: var(--orange); text-transform: uppercase; margin-bottom: 16px; opacity: 0; animation: fadeUp 0.6s ease 0.05s forwards; }
+  .hero-title { font-family: 'Montserrat', sans-serif; font-size: clamp(34px, 5.5vw, 76px); font-weight: 800; line-height: 0.95; letter-spacing: -0.025em; color: #fff; margin-bottom: 10px; opacity: 0; animation: fadeUp 0.7s ease 0.15s forwards; }
+  .hero-title span { color: var(--orange); }
+  .hero-divider { width: 100%; height: 1px; background: linear-gradient(90deg, var(--orange), rgba(255,255,255,0.04) 55%, transparent); margin: 20px 0 18px; opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards; }
+  .hero-subtitle { font-family: 'Lato', sans-serif; font-size: clamp(13px, 1.6vw, 16px); font-weight: 400; font-style: italic; color: rgba(255,255,255,0.42); margin-bottom: 36px; max-width: 560px; line-height: 1.6; opacity: 0; animation: fadeUp 0.7s ease 0.35s forwards; }
+  .hero-meta { display: flex; gap: 0; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s ease 0.48s forwards; border: 1px solid rgba(255,255,255,0.07); overflow: hidden; width: fit-content; }
+  .hero-meta-item { display: flex; align-items: center; gap: 10px; padding: 11px 20px; border-right: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.03); }
+  .hero-meta-item:last-child { border-right: none; }
+  .hero-meta-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .hero-meta-label { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35); letter-spacing: 0.10em; text-transform: uppercase; }
+  .hero-meta-val { font-family: 'Lato', sans-serif; font-size: 12.5px; color: rgba(255,255,255,0.70); }
+  .hero-meta-date { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.28); margin-left: 4px; }
+  .hero-scroll { position: absolute; bottom: 24px; left: 48px; display: flex; align-items: center; gap: 10px; opacity: 0; animation: fadeIn 1s ease 1s forwards; z-index: 1; }
+  .hero-scroll-line { width: 26px; height: 1px; background: rgba(255,255,255,0.16); }
+  .hero-scroll-text { font-family: 'Lato', sans-serif; font-size: 10px; letter-spacing: 0.13em; color: rgba(255,255,255,0.20); text-transform: uppercase; }
+
+  /* ── PHASE SECTIONS ── */
+  .phase-section { padding: 64px 0 60px; }
+  .phase-section.white { background: var(--white); }
+  .phase-section.beige { background: var(--beige); }
+
+  .phase-header { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; margin-bottom: 48px; }
+  .phase-header-left {}
+  .phase-badge { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .phase-badge-num { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; color: var(--white); padding: 4px 12px; text-transform: uppercase; }
+  .ph1-bg { background: var(--navy); }
+  .ph2-bg { background: var(--blue); }
+  .ph3-bg { background: var(--orange); }
+  .ph4-bg { background: var(--gold); }
+  .phase-title { font-family: 'Montserrat', sans-serif; font-size: clamp(22px, 2.8vw, 34px); font-weight: 800; color: var(--navy); letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 8px; }
+  .phase-dates { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; margin-bottom: 16px; }
+  .ph1-date { color: var(--navy); }
+  .ph2-date { color: var(--blue); }
+  .ph3-date { color: var(--orange); }
+  .ph4-date { color: var(--gold); }
+  .phase-intro { font-family: 'Lato', sans-serif; font-size: 15px; line-height: 1.72; color: #4A4A6A; }
+  .phase-intro strong { color: var(--navy); font-weight: 700; }
+
+  /* targets box */
+  .targets-box { padding: 22px 24px; border-left: 3px solid var(--orange); background: var(--orange-pale); }
+  .phase-section.beige .targets-box { background: rgba(255,255,255,0.55); }
+  .targets-box-label { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; color: var(--orange-dim); text-transform: uppercase; margin-bottom: 12px; }
+  .target-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .target-row:last-child { margin-bottom: 0; }
+  .target-num { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 800; color: var(--navy); line-height: 1; min-width: 70px; flex-shrink: 0; }
+  .target-desc { font-family: 'Lato', sans-serif; font-size: 13px; line-height: 1.4; color: var(--muted); }
+
+  /* pillar blocks */
+  .pillar-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 1px solid var(--border); overflow: hidden; }
+  .pillar-block { padding: 24px 22px; position: relative; }
+  .phase-section.white .pillar-block { background: var(--white); }
+  .phase-section.white .pillar-block:hover { background: #FDFAF7; }
+  .phase-section.beige .pillar-block { background: var(--beige); }
+  .phase-section.beige .pillar-block:hover { background: #EDE8E2; }
+  .pillar-block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+  .pillar-block:hover::before { transform: scaleX(1); }
+  .acc-or::before { background: var(--orange); }
+  .acc-bl::before { background: var(--blue); }
+  .acc-gd::before { background: var(--gold); }
+  .acc-nv::before { background: var(--navy); }
+  .pb-pillar { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; }
+  .pb-title { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 14px; line-height: 1.25; }
+  .pb-title span { font-size: 11px; font-weight: 400; color: var(--muted); font-style: italic; font-family: 'Lato', sans-serif; display: block; margin-top: 2px; }
+  .act { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 9px; }
+  .act:last-child { margin-bottom: 0; }
+  .act-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .d-or { background: var(--orange); }
+  .d-bl { background: var(--blue); }
+  .d-nv { background: var(--navy); }
+  .d-gd { background: var(--gold); }
+  .act-body { font-family: 'Lato', sans-serif; font-size: 13px; line-height: 1.5; color: var(--muted); }
+  .act-title { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--navy); display: block; margin-bottom: 1px; }
+
+  /* integration note */
+  .int-note { margin-top: 28px; padding: 14px 18px; border: 1px dashed rgba(12,35,64,0.15); background: rgba(244,239,233,0.5); display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .phase-section.beige .int-note { background: rgba(255,255,255,0.4); }
+  .int-tag { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; white-space: nowrap; }
+  .int-chip { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 9px; background: rgba(232,98,26,0.09); color: var(--orange-dim); }
+
+  /* ── TIMELINE SUMMARY ── */
+  .timeline { background: var(--navy); padding: 64px 0 68px; }
+  .timeline .section-label-line { background: var(--orange); }
+  .timeline .section-label-text { color: var(--orange); }
+  .tl-intro { font-family: 'Lato', sans-serif; font-size: 15.5px; line-height: 1.7; color: rgba(255,255,255,0.45); max-width: 620px; margin-bottom: 48px; }
+
+  .tl-track { position: relative; }
+  .tl-spine { position: absolute; left: 0; top: 12px; bottom: 12px; width: 1px; background: rgba(255,255,255,0.10); }
+
+  .tl-phase { display: grid; grid-template-columns: 200px 1fr; gap: 0; margin-bottom: 0; position: relative; }
+  .tl-phase-left { padding: 0 32px 40px 20px; border-right: 1px solid rgba(255,255,255,0.07); position: relative; }
+  .tl-phase-left::before { content: ''; position: absolute; right: -5px; top: 8px; width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--navy); }
+  .ph1-node::before { background: var(--navy); border-color: rgba(255,255,255,0.3); }
+  .ph2-node::before { background: var(--blue); border-color: var(--blue); }
+  .ph3-node::before { background: var(--orange); border-color: var(--orange); }
+  .ph4-node::before { background: var(--gold); border-color: var(--gold); }
+  .tl-ph-num { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: rgba(255,255,255,0.28); text-transform: uppercase; margin-bottom: 5px; }
+  .tl-ph-name { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 4px; }
+  .tl-ph-date { font-family: 'Lato', sans-serif; font-size: 11.5px; font-style: italic; }
+  .ph1-c { color: rgba(255,255,255,0.4); }
+  .ph2-c { color: #6B9DD4; }
+  .ph3-c { color: #F0956A; }
+  .ph4-c { color: #D4A84B; }
+
+  .tl-phase-right { padding: 0 0 40px 32px; }
+  .tl-events { display: flex; flex-direction: column; gap: 10px; }
+  .tl-event { display: flex; align-items: flex-start; gap: 12px; }
+  .tl-event-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .tl-event-body { font-family: 'Lato', sans-serif; font-size: 13.5px; line-height: 1.45; color: rgba(255,255,255,0.50); }
+  .tl-event-body strong { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.82); display: block; margin-bottom: 1px; letter-spacing: 0.02em; }
+
+  .tl-divider { grid-column: 1 / -1; height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 32px; }
+
+  /* ── ANIM ── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+
+  @media (max-width: 900px) {
+    .inner { padding: 0 24px; }
+    .hero-inner { padding: 52px 24px; }
+    .phase-header, .pillar-blocks { grid-template-columns: 1fr; gap: 28px; }
+    .tl-phase { grid-template-columns: 1fr; }
+    .tl-phase-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding-bottom: 16px; margin-bottom: 16px; }
+    .hero-meta { flex-direction: column; }
+    .hero-meta-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">BasharSoft × Cairo University</div>
+    <div class="hero-title">Implementation<br><span>Roadmap</span></div>
+    <div class="hero-divider"></div>
+    <p class="hero-subtitle">Four phases across 24 months — from foundation and quick wins to a fully self-sustaining institutional ecosystem.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="hero-meta-dot" style="background:rgba(255,255,255,0.4);"></div><span class="hero-meta-label">Phase 1</span><span class="hero-meta-val">Foundation &amp; Quick Wins</span><span class="hero-meta-date">Apr – Sep 2026</span></div>
+      <div class="hero-meta-item"><div class="hero-meta-dot" style="background:var(--blue);"></div><span class="hero-meta-label">Phase 2</span><span class="hero-meta-val">Activation &amp; Early Scale</span><span class="hero-meta-date">Oct 2026 – Mar 2027</span></div>
+      <div class="hero-meta-item"><div class="hero-meta-dot" style="background:var(--orange);"></div><span class="hero-meta-label">Phase 3</span><span class="hero-meta-val">Deep Integration &amp; Alumni Investment</span><span class="hero-meta-date">Apr – Sep 2027</span></div>
+      <div class="hero-meta-item"><div class="hero-meta-dot" style="background:var(--gold);"></div><span class="hero-meta-label">Phase 4</span><span class="hero-meta-val">Sustainability &amp; Ecosystem Maturity</span><span class="hero-meta-date">Oct 2027 – Mar 2028</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="hero-scroll-line"></div><span class="hero-scroll-text">Scroll to explore</span></div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<!-- PHASE 1                                                                   -->
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<section class="phase-section white">
+  <div class="inner">
+
+    <div class="phase-header">
+      <div class="phase-header-left">
+        <div class="phase-badge"><span class="phase-badge-num ph1-bg">Phase 01</span></div>
+        <div class="phase-title">Foundation &amp; Quick Wins</div>
+        <div class="phase-dates ph1-date">April – September 2026</div>
+        <p class="phase-intro">Launch the CU talent portal across five pilot faculties, deploy BrainsMingle, formally establish the alumni association and Innovation Fund, run the first AI Hackathon, and graduate the first incubator cohort — all within six months.</p>
+      </div>
+      <div>
+        <div class="targets-box">
+          <div class="targets-box-label">Phase-End Targets</div>
+          <div class="target-row"><span class="target-num">5,000+</span><span class="target-desc">Students actively registered on the talent portal</span></div>
+          <div class="target-row"><span class="target-num">50+</span><span class="target-desc">Exclusive job and internship postings for CU students</span></div>
+          <div class="target-row"><span class="target-num">500+</span><span class="target-desc">Flash mentoring sessions completed</span></div>
+          <div class="target-row"><span class="target-num">EGP 5M</span><span class="target-desc">Raised for CU Innovation Fund — 10 grants disbursed</span></div>
+          <div class="target-row"><span class="target-num">5</span><span class="target-desc">Startups in first incubator cohort; 2 secure external funding</span></div>
+          <div class="target-row"><span class="target-num">200+</span><span class="target-desc">Students at AI Hackathon; top 3 advance to CUAI Nexus</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar-blocks">
+      <div class="pillar-block acc-or">
+        <div class="pb-pillar">Pillar 01</div>
+        <div class="pb-title">Career &amp; Employment Gateway <span>Wuzzuf · Forasna · iCareer</span></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">Talent Portal Launch</span>Co-branded portal on Wuzzuf/Forasna with CU logo and dedicated URL; 5 pilot faculties: Engineering, Computing &amp; AI, Commerce, Medicine, Law</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">SIS Profile Pre-Population</span>Final-year student profiles auto-populated from the Student Information System</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">First On-Campus Career Fair</span>CU Grand Hall — 50+ employers from BasharSoft network; iCareer manages logistics, employer engagement, and student registration</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">iCareer Employability Workshops</span>Two sessions per pilot faculty covering CV writing, interview skills, and personal branding</div></div>
+      </div>
+
+      <div class="pillar-block acc-bl">
+        <div class="pb-pillar">Pillar 02</div>
+        <div class="pb-title">Community &amp; Engagement Infrastructure <span>BrainsMingle</span></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">BrainsMingle White-Label Launch</span>Deployed at community.cu.edu.eg — fully customised with CU branding and faculty pages</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Mentor Marketplace</span>200 mentors onboarded — alumni, faculty, and industry professionals with public profiles, expertise tags, and direct booking links</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Persistent Community Spaces</span>Faculty-wide and cohort-level spaces for all 5 pilot faculties (e.g., Engineering Class of 2027)</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Flash Mentoring</span>30-minute on-demand sessions available to all students in pilot faculties</div></div>
+      </div>
+
+      <div class="pillar-block acc-gd">
+        <div class="pb-pillar">Pillar 03</div>
+        <div class="pb-title">Alumni Program &amp; Investment Vehicles <span>Wuzzuf · Forasna · BrainsMingle</span></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">CU Alumni Association — Cairo Chapter</span>Formally established with defined governance and an interim board elected from engaged alumni</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">Alumni Data Cleansing</span>50,000 graduate contacts verified, focusing on the Cairo region</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">CU Innovation Fund Launch</span>First call for proposals April–May; EGP 5M raised from anchor donors; grant committee selects 10 grantees (EGP 50K–100K each); disbursement complete by September</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">First Demo Day — September</span>Incubator cohort 1 pitches to alumni angels; 2 startups target EGP 200K–500K each</div></div>
+      </div>
+
+      <div class="pillar-block acc-nv">
+        <div class="pb-pillar">Pillar 04</div>
+        <div class="pb-title">Entrepreneurship &amp; Incubator <span>iCareer · BrainsMingle · CU CO</span></div>
+        <div class="act"><span class="act-dot d-nv"></span><div class="act-body"><span class="act-title">AI Hackathon — July 2026</span>Two-day event at Faculty of Computing &amp; AI; 200+ students; industry challenges from BasharSoft partners; top 3 teams advance to CUAI Nexus in October</div></div>
+        <div class="act"><span class="act-dot d-nv"></span><div class="act-body"><span class="act-title">R&amp;D Marketplace Pilot</span>100 graduation projects collected from 5 pilot faculties; CU-led screening selects top 10 for incubation</div></div>
+        <div class="act"><span class="act-dot d-nv"></span><div class="act-body"><span class="act-title">CU Incubator Established</span>Physical space within CU Company premises; 12-week program blueprint; first cohort of 5 startups recruited from top graduation projects</div></div>
+      </div>
+    </div>
+
+    <div class="int-note">
+      <span class="int-tag">Pillar 05 — Integration</span>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;">
+        <span class="int-chip">SSO — unified CU credentials across talent portal and BrainsMingle</span>
+        <span class="int-chip">SIS pilot sync — Computing &amp; AI final-year data flows automatically</span>
+        <span class="int-chip">Joint implementation unit — 3–4 BasharSoft + 3–4 CU staff co-located on campus</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<!-- PHASE 2                                                                   -->
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<section class="phase-section beige">
+  <div class="inner">
+
+    <div class="phase-header">
+      <div class="phase-header-left">
+        <div class="phase-badge"><span class="phase-badge-num ph2-bg">Phase 02</span></div>
+        <div class="phase-title">Activation &amp; Early Scale</div>
+        <div class="phase-dates ph2-date">October 2026 – March 2027</div>
+        <p class="phase-intro">Expand to 15 faculties, launch Alumni Angels with the first quarterly pitch event, activate the UAE Gulf chapter, begin design of the Alumni Venture Fund, and lay all groundwork for CUES 2027.</p>
+      </div>
+      <div>
+        <div class="targets-box">
+          <div class="targets-box-label">Phase-End Targets</div>
+          <div class="target-row"><span class="target-num">30,000+</span><span class="target-desc">Students active on the talent portal</span></div>
+          <div class="target-row"><span class="target-num">200+</span><span class="target-desc">Exclusive job and internship postings</span></div>
+          <div class="target-row"><span class="target-num">2,000+</span><span class="target-desc">Mentoring sessions completed (Flash + Semester)</span></div>
+          <div class="target-row"><span class="target-num">EGP 2M</span><span class="target-desc">Alumni Angels — 5 investments across 6 pitching startups</span></div>
+          <div class="target-row"><span class="target-num">200+</span><span class="target-desc">UAE chapter members established</span></div>
+          <div class="target-row"><span class="target-num">500</span><span class="target-desc">Graduation projects processed via R&amp;D Marketplace</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar-blocks">
+      <div class="pillar-block acc-or">
+        <div class="pb-pillar">Pillar 01</div>
+        <div class="pb-title">Career &amp; Employment Gateway <span>Wuzzuf · Forasna · iCareer</span></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Expand to 15 Faculties</span>Humanities, sciences, agriculture and more — all final-year students in these faculties automatically activated</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Faculty-Level Career Fairs</span>One tailored fair per faculty during the period, managed entirely by iCareer</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Labor Market Intelligence Dashboard</span>Real-time data on hiring demand by discipline, employer engagement levels, and graduate placement rates delivered to CU leadership</div></div>
+      </div>
+
+      <div class="pillar-block acc-bl">
+        <div class="pb-pillar">Pillar 02</div>
+        <div class="pb-title">Community &amp; Engagement Infrastructure <span>BrainsMingle</span></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Roll Out to All 15 Active Faculties</span>Each faculty gets its own community space, office hours module, and mentoring marketplace</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Faculty Office Hours Live</span>Faculty publish weekly availability; students book with automated reminders and follow-up</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Semester Mentoring</span>Structured three-session tracks (career exploration, skill development) for deeper guidance</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Speed Networking</span>Automated timed video rotations at career fairs and alumni events</div></div>
+      </div>
+
+      <div class="pillar-block acc-gd">
+        <div class="pb-pillar">Pillar 03</div>
+        <div class="pb-title">Alumni Program &amp; Investment Vehicles <span>Wuzzuf · Forasna · BrainsMingle</span></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">CU Alumni Angels Launch</span>First quarterly pitch event January 2027 — 6 CU-affiliated startups pitch to 20 trained angel investors; SPV structure (EGP 50K–100K tickets); target 5 investments totalling EGP 2M</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">UAE Gulf Chapter Activated</span>Virtual launch event and local steering committee formed; 200+ members targeted</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Venture Fund Design Begins</span>Legal structuring, fund prospectus development; target EGP 50M; LP minimum EGP 100K</div></div>
+      </div>
+
+      <div class="pillar-block acc-nv">
+        <div class="pb-pillar">Pillar 04</div>
+        <div class="pb-title">Entrepreneurship &amp; Incubator <span>iCareer · BrainsMingle · CU CO</span></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">R&amp;D Marketplace Scale</span>Expanded to 10 faculties — 500 graduation projects processed annually with two selection rounds</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">CUES 2027 Preparation</span>Steering committee formed (CU, BasharSoft, iCareer); sponsorship outreach initiated; program designed</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Incubator Cohort 2</span>10 startups recruited from expanded Marketplace; mentored by Alumni Angels network</div></div>
+        <div class="act"><span class="act-dot d-bl"></span><div class="act-body"><span class="act-title">Scaleup Resident Partner Program</span>5 Egyptian scaleups (fintech, e-commerce, SaaS) recruited as campus resident partners</div></div>
+      </div>
+    </div>
+
+    <div class="int-note">
+      <span class="int-tag">Pillar 05 — Integration</span>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;">
+        <span class="int-chip">SIS API integration — 15 active faculties; auto student-to-alumni transition at graduation</span>
+        <span class="int-chip">Computing &amp; AI capstone projects integrated with live BasharSoft platform challenges</span>
+        <span class="int-chip">Top capstone performers receive fast-track hiring interviews</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<!-- PHASE 3                                                                   -->
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<section class="phase-section white">
+  <div class="inner">
+
+    <div class="phase-header">
+      <div class="phase-header-left">
+        <div class="phase-badge"><span class="phase-badge-num ph3-bg">Phase 03</span></div>
+        <div class="phase-title">Deep Integration &amp; Alumni Investment</div>
+        <div class="phase-dates ph3-date">April – September 2027</div>
+        <p class="phase-intro">Complete the full 26-faculty rollout, launch the Alumni Venture Fund and Research Commercialisation Fund, deliver CUES 2027, and activate five Gulf alumni chapters — all while embedding BrainsMingle as the university's primary communication infrastructure.</p>
+      </div>
+      <div>
+        <div class="targets-box">
+          <div class="targets-box-label">Phase-End Targets</div>
+          <div class="target-row"><span class="target-num">80,000+</span><span class="target-desc">Students active; 100% of graduates auto-transition to alumni portal</span></div>
+          <div class="target-row"><span class="target-num">EGP 30M</span><span class="target-desc">Venture Fund first close; 5 investments made</span></div>
+          <div class="target-row"><span class="target-num">5</span><span class="target-desc">Research spinoff companies seeded via Commercialisation Fund</span></div>
+          <div class="target-row"><span class="target-num">5</span><span class="target-desc">Gulf chapters active — UAE, Saudi, Kuwait, Qatar, Oman</span></div>
+          <div class="target-row"><span class="target-num">50+</span><span class="target-desc">Investors at CUES 2027; 10 startups receive funding commitments</span></div>
+          <div class="target-row"><span class="target-num">30</span><span class="target-desc">Cumulative incubator graduates; 10 have raised follow-on funding</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar-blocks">
+      <div class="pillar-block acc-or">
+        <div class="pb-pillar">Pillar 01</div>
+        <div class="pb-title">Career &amp; Employment Gateway <span>Wuzzuf · Forasna · iCareer</span></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">Full 26-Faculty Rollout</span>All final-year students automatically activated across the complete university</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">Graduate Outcomes Tracking</span>Automated 6 and 12-month employment data collected via UCCD partnership; joint annual report produced</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">Corporate R&amp;D Partnerships</span>3–5 companies fund applied research in exchange for first-look access to intellectual property</div></div>
+      </div>
+
+      <div class="pillar-block acc-bl">
+        <div class="pb-pillar">Pillar 02</div>
+        <div class="pb-title">Community &amp; Engagement Infrastructure <span>BrainsMingle</span></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">University-Wide Deployment</span>All 26 faculties — persistent community spaces, office hours, and mentoring marketplace</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">Primary Communication Channel</span>Replaces WhatsApp groups for all official faculty announcements, discussions, and student support</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">Accreditation Integration</span>BrainsMingle analytics dashboard connected to CU's institutional reporting for QAA, ABET, and EFMD requirements</div></div>
+      </div>
+
+      <div class="pillar-block acc-gd">
+        <div class="pb-pillar">Pillar 03</div>
+        <div class="pb-title">Alumni Program &amp; Investment Vehicles <span>Wuzzuf · Forasna · BrainsMingle</span></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">Alumni Venture Fund Launch</span>Pooled VC vehicle — first close targeting EGP 30M; professional Investment Committee formed; first 5 investments made by phase end</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">Research Commercialisation Fund</span>5 CU research spinoffs seeded across MedTech, AgriTech, and Engineering; EGP 500K–1M per spinoff in exchange for equity</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">5 Gulf Chapters Activated</span>UAE, Saudi, Kuwait, Qatar, Oman — each with steering committee and events calendar</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">CUES 2027 Delivered</span>500+ attendees, 50+ investors, 20+ startup pitches; media coverage and follow-on investments facilitated</div></div>
+      </div>
+
+      <div class="pillar-block acc-nv">
+        <div class="pb-pillar">Pillar 04</div>
+        <div class="pb-title">Entrepreneurship &amp; Incubator <span>iCareer · BrainsMingle · CU CO</span></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">Two Cohorts Per Year</span>20 startups per year — structured curriculum, mentorship, and demo days running at full capacity</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">Research Spinoff Program</span>5 CU research projects incorporated as startups and invested via the Commercialisation Fund</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">15 Scaleup Resident Partners</span>Mentorship, graduation project challenges, and hiring pipelines expanded</div></div>
+        <div class="act"><span class="act-dot d-or"></span><div class="act-body"><span class="act-title">Founder Circles</span>10 faculties — peer groups of 7–10 student founders meeting monthly with a senior mentor</div></div>
+      </div>
+    </div>
+
+    <div class="int-note">
+      <span class="int-tag">Pillar 05 — Integration</span>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;">
+        <span class="int-chip">Full SIS integration — every enrolled student auto-activated on portal and BrainsMingle</span>
+        <span class="int-chip">Fast-track hiring — top 20% of Computing &amp; AI capstone participants receive interview invitations</span>
+        <span class="int-chip">Unified CRM — syncs portal activity, mentoring, events, giving history, and investment participation</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<!-- PHASE 4                                                                   -->
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<section class="phase-section beige">
+  <div class="inner">
+
+    <div class="phase-header">
+      <div class="phase-header-left">
+        <div class="phase-badge"><span class="phase-badge-num ph4-bg">Phase 04</span></div>
+        <div class="phase-title">Sustainability &amp; Ecosystem Maturity</div>
+        <div class="phase-dates ph4-date">October 2027 – March 2028</div>
+        <p class="phase-intro">All eight investment vehicles operational. The CU Incubator self-sustaining. Fifteen global chapters active. Annual alumni-generated investment exceeds EGP 50M. BasharSoft infrastructure formally integrated into CU's long-term digital transformation roadmap.</p>
+      </div>
+      <div>
+        <div class="targets-box">
+          <div class="targets-box-label">Phase-End Targets</div>
+          <div class="target-row"><span class="target-num">200,000+</span><span class="target-desc">Alumni engaged — 50,000 paid members</span></div>
+          <div class="target-row"><span class="target-num">EGP 200M+</span><span class="target-desc">Collectively managed across all 8 investment vehicles</span></div>
+          <div class="target-row"><span class="target-num">EGP 50M+</span><span class="target-desc">Annual alumni investment into CU-originated ventures</span></div>
+          <div class="target-row"><span class="target-num">15</span><span class="target-desc">Global chapters active; annual Global Alumni Summit in Cairo</span></div>
+          <div class="target-row"><span class="target-num">100</span><span class="target-desc">Cumulative startups from CU Incubator; 30% survival/scale rate</span></div>
+          <div class="target-row"><span class="target-num">50+</span><span class="target-desc">Industry partners in R&amp;D Marketplace</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar-blocks">
+      <div class="pillar-block acc-or">
+        <div class="pb-pillar">Pillar 01</div>
+        <div class="pb-title">Career &amp; Employment Gateway <span>Wuzzuf · Forasna · iCareer</span></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">Dashboard-Driven Curriculum</span>Deans use labor market intelligence to introduce new majors and update existing programmes based on hiring trends and skills gaps</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">10+ Corporate R&amp;D Partnerships</span>Measurable outputs: joint publications, licensed IP, and sponsored research agreements</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">Outcomes in Rankings</span>Graduate outcomes tracking integrated into CU's annual reporting and international ranking submissions</div></div>
+      </div>
+
+      <div class="pillar-block acc-bl">
+        <div class="pb-pillar">Pillar 02</div>
+        <div class="pb-title">Community &amp; Engagement Infrastructure <span>BrainsMingle</span></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">Embedded in Faculty Performance Reviews</span>BrainsMingle analytics — office hours participation and mentoring engagement — inform faculty reviews and accreditation</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">AI-Powered Mentor Matching</span>Platform automatically suggests mentors based on student career interests, skills, and profile data</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">Official Institutional Communication Standard</span>All official student communications flow through BrainsMingle; scattered email lists and WhatsApp groups retired</div></div>
+      </div>
+
+      <div class="pillar-block acc-gd">
+        <div class="pb-pillar">Pillar 03</div>
+        <div class="pb-title">Alumni Program &amp; Investment Vehicles <span>Wuzzuf · Forasna · BrainsMingle</span></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">All 8 Investment Vehicles Operational</span>Innovation Fund, Alumni Angels, Venture Fund, Research Commercialisation Fund, Endowed Chairs, Named Scholarships, CU Capital Fund, and CU Giving Society tiers</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">Endowed Chairs Launch</span>First 5 donors (minimum EGP 500K each); chairs bear donor names with annual recognition events</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">15 Global Chapters</span>UK, Germany, France, USA, Canada, Australia — Global Alumni Summit in Cairo, February 2028</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">EGP 50M+ Annual Alumni Investment</span>Combined angels, venture fund, and research spinoff investments flowing into CU-originated ventures</div></div>
+      </div>
+
+      <div class="pillar-block acc-nv">
+        <div class="pb-pillar">Pillar 04</div>
+        <div class="pb-title">Entrepreneurship &amp; Incubator <span>iCareer · BrainsMingle · CU CO</span></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">Self-Sustaining Incubator</span>Operational costs fully covered by carried interest from alumni investment vehicles and corporate sponsorship</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">R&amp;D Marketplace as Primary Channel</span>50+ industry partners regularly posting challenges and scouting projects</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">100 Cumulative Startups Graduated</span>From CU Incubator since inception; 30% survival or scale rate</div></div>
+        <div class="act"><span class="act-dot d-gd"></span><div class="act-body"><span class="act-title">Full CS Capstone Integration</span>100% of Computing &amp; AI graduates complete a BasharSoft challenge; top 30% receive job offers before graduation</div></div>
+      </div>
+    </div>
+
+    <div class="int-note">
+      <span class="int-tag">Pillar 05 — Integration</span>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;">
+        <span class="int-chip">Full API ecosystem — SIS, BasharSoft platforms, alumni portal, CRM, and external partners</span>
+        <span class="int-chip">Joint research publications from Computing &amp; AI collaboration</span>
+        <span class="int-chip">BasharSoft infrastructure formalised in CU's long-term digital transformation roadmap</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<!-- TIMELINE SUMMARY                                                           -->
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<section class="timeline">
+  <div class="inner">
+    <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">Timeline Summary</span></div>
+    <p class="tl-intro">Key activities and milestones across the 24-month partnership — from first launch to full ecosystem maturity.</p>
+
+    <div class="tl-track">
+      <div class="tl-spine"></div>
+
+      <!-- Phase 1 -->
+      <div class="tl-phase">
+        <div class="tl-phase-left ph1-node">
+          <div class="tl-ph-num">Phase 01</div>
+          <div class="tl-ph-name">Foundation &amp; Quick Wins</div>
+          <div class="tl-ph-date ph1-c">Apr – Sep 2026</div>
+        </div>
+        <div class="tl-phase-right">
+          <div class="tl-events">
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--orange);"></div><div class="tl-event-body"><strong>Talent portal live</strong>5 pilot faculties on Wuzzuf/Forasna; first career fair at CU Grand Hall</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--blue);"></div><div class="tl-event-body"><strong>BrainsMingle deployed</strong>200 mentors onboarded; Flash mentoring and community spaces live</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--gold);"></div><div class="tl-event-body"><strong>CU Innovation Fund launched</strong>EGP 5M raised; 10 student ventures funded</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--navy);"></div><div class="tl-event-body"><strong>AI Hackathon &amp; Incubator Cohort 1</strong>200+ participants; 5 startups enrolled; Demo Day in September</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--muted);"></div><div class="tl-event-body"><strong>SSO and SIS pilot live</strong>Unified credentials and automated profile sync for Computing &amp; AI</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tl-divider"></div>
+
+      <!-- Phase 2 -->
+      <div class="tl-phase">
+        <div class="tl-phase-left ph2-node">
+          <div class="tl-ph-num">Phase 02</div>
+          <div class="tl-ph-name">Activation &amp; Early Scale</div>
+          <div class="tl-ph-date ph2-c">Oct 2026 – Mar 2027</div>
+        </div>
+        <div class="tl-phase-right">
+          <div class="tl-events">
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--orange);"></div><div class="tl-event-body"><strong>Portal expanded to 15 faculties</strong>Labor Market Dashboard delivered to CU leadership; faculty career fairs begin</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--blue);"></div><div class="tl-event-body"><strong>BrainsMingle at 15 faculties</strong>Office hours, Semester mentoring, and speed networking live</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--gold);"></div><div class="tl-event-body"><strong>Alumni Angels — first pitch event</strong>January 2027; 5 investments totalling EGP 2M; UAE chapter launched</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--navy);"></div><div class="tl-event-body"><strong>R&amp;D Marketplace at 10 faculties</strong>500 projects/year; Incubator Cohort 2 (10 startups); 5 scaleup partners</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--muted);"></div><div class="tl-event-body"><strong>SIS API at 15 faculties</strong>Auto student-to-alumni transition; capstone-to-platform challenge integration</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tl-divider"></div>
+
+      <!-- Phase 3 -->
+      <div class="tl-phase">
+        <div class="tl-phase-left ph3-node">
+          <div class="tl-ph-num">Phase 03</div>
+          <div class="tl-ph-name">Deep Integration &amp; Alumni Investment</div>
+          <div class="tl-ph-date ph3-c">Apr – Sep 2027</div>
+        </div>
+        <div class="tl-phase-right">
+          <div class="tl-events">
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--orange);"></div><div class="tl-event-body"><strong>Full 26-faculty rollout complete</strong>Graduate outcomes tracking live with UCCD; corporate R&amp;D partnerships signed</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--blue);"></div><div class="tl-event-body"><strong>BrainsMingle replaces WhatsApp university-wide</strong>Primary communication channel; accreditation analytics integrated</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--gold);"></div><div class="tl-event-body"><strong>Venture Fund first close — EGP 30M</strong>5 Gulf chapters active; Research Commercialisation Fund seeds 5 spinoffs</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--navy);"></div><div class="tl-event-body"><strong>CUES 2027 delivered</strong>500+ attendees, 50+ investors; Founder Circles across 10 faculties; 15 scaleup partners</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--muted);"></div><div class="tl-event-body"><strong>Full SIS integration &amp; unified CRM</strong>Every student auto-activated; all alumni interactions synced in one system</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tl-divider"></div>
+
+      <!-- Phase 4 -->
+      <div class="tl-phase">
+        <div class="tl-phase-left ph4-node">
+          <div class="tl-ph-num">Phase 04</div>
+          <div class="tl-ph-name">Sustainability &amp; Ecosystem Maturity</div>
+          <div class="tl-ph-date ph4-c">Oct 2027 – Mar 2028</div>
+        </div>
+        <div class="tl-phase-right">
+          <div class="tl-events">
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--orange);"></div><div class="tl-event-body"><strong>Dashboard drives curriculum decisions</strong>10+ R&amp;D partnerships; outcomes data in international ranking submissions</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--blue);"></div><div class="tl-event-body"><strong>AI mentor matching operational</strong>BrainsMingle embedded in faculty reviews and accreditation as institutional standard</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--gold);"></div><div class="tl-event-body"><strong>All 8 investment vehicles live</strong>EGP 200M+ collectively managed; EGP 50M+ annual alumni investment; 15 global chapters; Global Alumni Summit Cairo Feb 2028</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--navy);"></div><div class="tl-event-body"><strong>Self-sustaining incubator — 100 cumulative startups</strong>50+ R&amp;D Marketplace partners; 100% CS capstone on BasharSoft challenges</div></div>
+            <div class="tl-event"><div class="tl-event-dot" style="background:var(--muted);"></div><div class="tl-event-body"><strong>Full API ecosystem formalised</strong>BasharSoft infrastructure embedded in CU's long-term digital transformation roadmap</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
